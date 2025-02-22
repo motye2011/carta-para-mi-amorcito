@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Carta Animada</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background: #f8d7da;
+            overflow: hidden;
+        }
+        
+        .carta {
+            width: 150px;
+            height: 100px;
+            background: red;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            border-radius: 10px;
+            font-size: 18px;
+            color: white;
+            cursor: pointer;
+            animation: palpitar 1s infinite;
+        }
+
+        .carta.abierta {
+            animation: none;
+        }
+
+        @keyframes palpitar {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.1); }
+        }
+
+        .corazon {
+            position: absolute;
+            color: red;
+            font-size: 24px;
+            animation: latir 1.5s infinite;
+        }
+
+        @keyframes latir {
+            0%, 100% { transform: scale(1); opacity: 0.8; }
+            50% { transform: scale(1.3); opacity: 1; }
+        }
+
+        .mensaje {
+            display: none;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+            text-align: center;
+            font-size: 18px;
+        }
+
+        .carta.abierta + .mensaje {
+            display: block;
+        }
+    </style>
+</head>
+<body>
+    <div class="carta" onclick="abrirCarta()">💌</div>
+    <div class="mensaje">
+        Me enamoré de ti y la verdad no entendí cómo, simplemente sucedió. Encontré en ti lo que no encontré en nadie más. 
+        Me alegrabas el día y dejaba atrás todas mis preocupaciones. En ti encontré algo más que una amistad, 
+        en ti encontré la felicidad, alguien que me entendía. La verdad, siento que el día que te conocí gasté toda mi suerte 
+        por encontrar a alguien tan especial y linda como tú. Me enamoré de ti por todo lo que le hacías sentir a mi corazón, 
+        cosas que, me creas o no, nunca había sentido antes. Cada mensaje y audio que me mandas me pinta una sonrisa que no podía contener. 
+        Fuiste mi primer "TE AMO" sincero. Siempre estaré para ti, para apoyarte y amarte. La distancia me ha enseñado que te prefiero a ti, 
+        que aunque no pueda tocarte o besarte, no es impedimento para seguir eligiéndote cada día y esperarte porque tú lo vales todo. 
+        Fue tan bonito cómo en cuestión de días empezaste a ser el motivo de mi sonrisa, la cual reflejaba mi amor por ti. ❤️
+    </div>
+    
+    <script>
+        function abrirCarta() {
+            document.querySelector('.carta').classList.toggle('abierta');
+        }
+    </script>
+</body>
+</html>
