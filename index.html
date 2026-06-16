@@ -3,387 +3,759 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Para mi Niña </title>
+<title>Para Sarita 🌸</title>
 <style>
-*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;1,400&family=Lato:wght@300;400&display=swap');
 
-body {
-  background: linear-gradient(160deg, #1a0000 0%, #2d0000 50%, #1a0000 100%);
-  min-height: 100vh;
-  font-family: Georgia, 'Times New Roman', serif;
-  overflow-x: hidden;
-}
+  * { margin: 0; padding: 0; box-sizing: border-box; }
 
-@keyframes fadeUp    { from{opacity:0;transform:translateY(24px)} to{opacity:1;transform:translateY(0)} }
-@keyframes float     { 0%,100%{transform:translateY(0)} 50%{transform:translateY(-8px)} }
-@keyframes heartbeat { 0%,100%{transform:scale(1)} 50%{transform:scale(1.18)} }
-@keyframes petal     { 0%{transform:translateY(-30px) rotate(0deg);opacity:0} 5%{opacity:0.9} 85%{opacity:0.6} 100%{transform:translateY(110vh) rotate(540deg);opacity:0} }
-@keyframes shimmer   { 0%,100%{opacity:0.7} 50%{opacity:1} }
-@keyframes pulseRing { 0%{box-shadow:0 0 0 0 rgba(180,0,0,0.4)} 70%{box-shadow:0 0 0 16px rgba(180,0,0,0)} 100%{box-shadow:0 0 0 0 rgba(180,0,0,0)} }
+  body {
+    background: #0a0a12;
+    color: #f0e6d3;
+    font-family: 'Lato', sans-serif;
+    min-height: 100vh;
+    overflow-x: hidden;
+  }
 
-.petals { position:fixed; inset:0; pointer-events:none; z-index:0; }
-.petal  { position:absolute; border-radius:60% 40% 60% 40% / 60% 60% 40% 40%; animation:petal linear infinite; opacity:0; }
+  .stars {
+    position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+    pointer-events: none; z-index: 0;
+  }
 
-.page {
-  position: relative;
-  z-index: 1;
-  width: 100%;
-  max-width: 780px;
-  margin: 0 auto;
-  padding: 0 clamp(1rem, 4vw, 2.5rem) 5rem;
-}
+  .star {
+    position: absolute;
+    background: white;
+    border-radius: 50%;
+    animation: twinkle var(--d) ease-in-out infinite alternate;
+  }
 
-.hero {
-  text-align: center;
-  padding: clamp(2rem, 5vw, 4rem) 1rem clamp(1.5rem, 3vw, 2.5rem);
-  animation: fadeUp 1s ease both;
-}
-.hero-flower { animation: float 3.5s ease-in-out infinite; display:inline-block; margin-bottom: 1rem; }
-.hero-flower svg { width: clamp(80px, 12vw, 120px); height: auto; }
-.hero-title {
-  font-size: clamp(1.8rem, 4vw, 3rem);
-  color: #c0392b;
-  font-weight: normal;
-  font-style: italic;
-  line-height: 1.35;
-}
-.hero-sub {
-  font-size: clamp(0.85rem, 1.8vw, 1.05rem);
-  color: #e74c3c;
-  margin-top: 0.5rem;
-  letter-spacing: 0.05em;
-  font-family: -apple-system, sans-serif;
-}
+  @keyframes twinkle {
+    from { opacity: 0.1; }
+    to { opacity: 0.8; }
+  }
 
-.divider {
-  text-align: center;
-  color: #8b0000;
-  font-size: clamp(0.85rem, 1.5vw, 1.1rem);
-  letter-spacing: 10px;
-  margin: clamp(1.2rem, 2.5vw, 2rem) 0;
-  animation: shimmer 3s ease-in-out infinite;
-}
+  .petals-bg {
+    position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+    pointer-events: none; z-index: 0; overflow: hidden;
+  }
 
-.section {
-  margin-bottom: clamp(1.5rem, 3vw, 2.5rem);
-  animation: fadeUp 1s ease both;
-}
-.section-label {
-  text-align: center;
-  font-family: -apple-system, sans-serif;
-  font-size: clamp(0.65rem, 1.2vw, 0.8rem);
-  letter-spacing: 0.15em;
-  text-transform: uppercase;
-  color: #c0392b;
-  margin-bottom: 1rem;
-  opacity: 0.9;
-}
+  .petal {
+    position: absolute;
+    animation: fall linear infinite;
+    opacity: 0.3;
+  }
 
-.counter-card {
-  background: rgba(20,0,0,0.85);
-  border: 0.5px solid rgba(180,0,0,0.4);
-  border-radius: clamp(16px, 3vw, 24px);
-  padding: clamp(1.5rem, 3vw, 2.5rem) 1rem;
-  text-align: center;
-  animation: pulseRing 3s ease-in-out infinite;
-}
-.counter-since {
-  font-size: clamp(0.8rem, 1.5vw, 0.95rem);
-  color: #e74c3c;
-  font-family: -apple-system, sans-serif;
-  margin-bottom: 1.5rem;
-  font-style: italic;
-}
-.counter-row {
-  display: flex;
-  justify-content: center;
-  align-items: flex-start;
-  gap: clamp(4px, 1.5vw, 16px);
-  flex-wrap: wrap;
-}
-.counter-unit { display:flex; flex-direction:column; align-items:center; min-width: clamp(60px, 10vw, 90px); }
-.counter-num {
-  font-size: clamp(2.2rem, 5vw, 3.8rem);
-  font-weight: normal;
-  color: #c0392b;
-  line-height: 1;
-  font-family: Georgia, serif;
-  font-style: italic;
-}
-.counter-lbl {
-  font-size: clamp(0.6rem, 1.1vw, 0.75rem);
-  color: #e74c3c;
-  font-family: -apple-system, sans-serif;
-  letter-spacing: 0.1em;
-  text-transform: uppercase;
-  margin-top: 6px;
-  opacity: 0.85;
-}
-.counter-sep {
-  font-size: clamp(1.6rem, 3vw, 2.8rem);
-  color: #8b0000;
-  line-height: 1;
-  padding-top: 4px;
-}
+  @keyframes fall {
+    0% { transform: translateY(-20px) rotate(0deg); opacity: 0; }
+    10% { opacity: 0.3; }
+    90% { opacity: 0.2; }
+    100% { transform: translateY(100vh) rotate(360deg); opacity: 0; }
+  }
 
-.moments-list { display: flex; flex-direction: column; gap: clamp(10px, 2vw, 16px); }
-.moment-card {
-  background: rgba(20,0,0,0.82);
-  border: 0.5px solid rgba(180,0,0,0.3);
-  border-radius: clamp(14px, 2.5vw, 20px);
-  padding: clamp(1.1rem, 2.5vw, 1.6rem) clamp(1rem, 2.5vw, 1.5rem);
-  display: flex;
-  gap: clamp(0.75rem, 2vw, 1.25rem);
-  align-items: flex-start;
-}
-.moment-icon { font-size: clamp(1.6rem, 3vw, 2.2rem); flex-shrink:0; margin-top: 2px; }
-.moment-title {
-  font-size: clamp(0.95rem, 1.8vw, 1.1rem);
-  color: #c0392b;
-  font-style: italic;
-  margin-bottom: 0.4rem;
-  font-family: Georgia, serif;
-}
-.moment-desc {
-  font-size: clamp(0.8rem, 1.5vw, 0.92rem);
-  color: #f5c6c6;
-  line-height: 1.75;
-  font-family: -apple-system, sans-serif;
-}
+  #lock-screen {
+    position: fixed; inset: 0;
+    background: #0a0a12;
+    display: flex; align-items: center; justify-content: center;
+    z-index: 100;
+    flex-direction: column;
+    text-align: center;
+    padding: 2rem;
+  }
 
-.letter-card {
-  background: rgba(20,0,0,0.82);
-  border: 0.5px solid rgba(180,0,0,0.3);
-  border-radius: clamp(16px, 3vw, 24px);
-  padding: clamp(1.75rem, 4vw, 3rem) clamp(1.25rem, 4vw, 2.5rem);
-}
-.letter-opening {
-  font-size: clamp(1.05rem, 2vw, 1.3rem);
-  color: #c0392b;
-  font-style: italic;
-  margin-bottom: 1.5rem;
-}
-.letter-body {
-  font-size: clamp(0.92rem, 1.7vw, 1.05rem);
-  color: #f5c6c6;
-  line-height: 2;
-}
-.letter-body p { margin-bottom: 1.4rem; }
-.letter-body em { color: #e74c3c; font-style: italic; }
-.letter-sign {
-  margin-top: 2rem;
-  text-align: right;
-  font-size: clamp(1rem, 1.8vw, 1.2rem);
-  color: #c0392b;
-  font-style: italic;
-}
+  .lock-title {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(1.8rem, 5vw, 3rem);
+    color: #f7c5d5;
+    margin-bottom: 0.5rem;
+  }
 
-.closing-heart { text-align:center; padding: clamp(2rem, 4vw, 3.5rem) 1.5rem 1rem; }
-.big-heart { font-size: clamp(2.5rem, 5vw, 3.5rem); animation: heartbeat 2s ease-in-out infinite; display:inline-block; }
-.closing-text {
-  font-size: clamp(0.9rem, 1.7vw, 1.05rem);
-  color: #e74c3c;
-  margin-top: 1rem;
-  font-style: italic;
-  line-height: 1.8;
-}
+  .lock-sub {
+    font-size: 0.95rem;
+    color: #9e8fa0;
+    margin-bottom: 2.5rem;
+    font-style: italic;
+  }
 
-@media (min-width: 600px) {
-  .moments-list { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
-  .moment-card { flex-direction: column; gap: 0.5rem; }
-  .moment-icon { font-size: 2rem; margin-bottom: 0.4rem; }
-}
-@media (min-width: 900px) {
-  .moments-list { grid-template-columns: 1fr 1fr 1fr; }
-}
+  .riddle-box {
+    background: rgba(247, 197, 213, 0.07);
+    border: 1px solid rgba(247, 197, 213, 0.2);
+    border-radius: 16px;
+    padding: 1.5rem 2rem;
+    max-width: 480px;
+    margin-bottom: 2rem;
+    line-height: 1.9;
+    font-size: 0.95rem;
+    color: #d4bfc8;
+  }
+
+  .riddle-box span { color: #f7c5d5; }
+
+  .pw-input {
+    background: rgba(255,255,255,0.05);
+    border: 1px solid rgba(247, 197, 213, 0.3);
+    border-radius: 50px;
+    padding: 0.75rem 1.5rem;
+    color: #f0e6d3;
+    font-size: 1rem;
+    text-align: center;
+    letter-spacing: 0.15em;
+    width: 220px;
+    outline: none;
+    font-family: 'Lato', sans-serif;
+    margin: 0 auto 0.75rem;
+    display: block;
+    transition: border-color 0.3s;
+  }
+
+  .pw-input:focus { border-color: #f7c5d5; }
+  .pw-input.error { border-color: #e06c75; animation: shake 0.4s ease; }
+
+  @keyframes shake {
+    0%,100%{transform:translateX(0)}25%{transform:translateX(-8px)}75%{transform:translateX(8px)}
+  }
+
+  .pw-btn {
+    background: linear-gradient(135deg, #c96a8a, #9b4a6e);
+    border: none;
+    border-radius: 50px;
+    padding: 0.75rem 2.5rem;
+    color: white;
+    font-size: 0.95rem;
+    cursor: pointer;
+    font-family: 'Lato', sans-serif;
+    letter-spacing: 0.05em;
+    transition: transform 0.2s, opacity 0.2s;
+    display: block;
+    margin: 0.75rem auto 0;
+  }
+
+  .pw-btn:hover { transform: scale(1.03); opacity: 0.9; }
+
+  .pw-error {
+    color: #e06c75;
+    font-size: 0.85rem;
+    margin-top: 0.4rem;
+    min-height: 1.2rem;
+    text-align: center;
+  }
+
+  #main { position: relative; z-index: 1; max-width: 860px; margin: 0 auto; padding: 2rem 1.5rem 4rem; }
+
+  .hero { text-align: center; padding: 3rem 0 2rem; }
+
+  .hero-pre {
+    font-size: 0.85rem;
+    letter-spacing: 0.3em;
+    color: #c96a8a;
+    text-transform: uppercase;
+    margin-bottom: 1rem;
+  }
+
+  .hero-title {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(2.5rem, 8vw, 5rem);
+    color: #f7c5d5;
+    line-height: 1.1;
+    margin-bottom: 1rem;
+  }
+
+  .hero-sub {
+    font-size: 1rem;
+    color: #9e8fa0;
+    font-style: italic;
+  }
+
+  .counter-section {
+    background: rgba(247, 197, 213, 0.06);
+    border: 1px solid rgba(247, 197, 213, 0.15);
+    border-radius: 20px;
+    padding: 2rem;
+    text-align: center;
+    margin-bottom: 3rem;
+  }
+
+  .counter-label {
+    font-size: 0.78rem;
+    letter-spacing: 0.2em;
+    color: #9e8fa0;
+    text-transform: uppercase;
+    margin-bottom: 1.25rem;
+  }
+
+  .counter-grid {
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    gap: 0.75rem;
+    flex-wrap: wrap;
+  }
+
+  .counter-unit { display: flex; flex-direction: column; align-items: center; }
+
+  .counter-num {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(2rem, 7vw, 4rem);
+    color: #f7c5d5;
+    line-height: 1;
+    min-width: 2ch;
+    text-align: center;
+  }
+
+  .counter-sep {
+    font-family: 'Playfair Display', serif;
+    font-size: 2.5rem;
+    color: rgba(247, 197, 213, 0.25);
+    line-height: 1;
+  }
+
+  .counter-unit-label {
+    font-size: 0.65rem;
+    letter-spacing: 0.18em;
+    color: #7a6b7a;
+    text-transform: uppercase;
+    margin-top: 0.3rem;
+  }
+
+  .counter-msg {
+    margin-top: 1.25rem;
+    font-size: 0.88rem;
+    color: #c96a8a;
+    font-style: italic;
+  }
+
+  .poem-main {
+    background: rgba(247, 197, 213, 0.04);
+    border-left: 2px solid #c96a8a;
+    border-radius: 0 16px 16px 0;
+    padding: 2.5rem 2rem 2rem 2.5rem;
+    margin-bottom: 3rem;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .poem-main::before {
+    content: '\201C';
+    font-family: 'Playfair Display', serif;
+    font-size: 8rem;
+    color: rgba(201, 106, 138, 0.1);
+    position: absolute;
+    top: -1.5rem; left: 0.5rem;
+    line-height: 1;
+    pointer-events: none;
+  }
+
+  .poem-main-title {
+    font-size: 0.72rem;
+    letter-spacing: 0.3em;
+    color: #c96a8a;
+    text-transform: uppercase;
+    margin-bottom: 1.5rem;
+  }
+
+  .poem-text {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.05rem;
+    line-height: 2.1;
+    color: #d4bfc8;
+    font-style: italic;
+  }
+
+  .poem-text p { margin-bottom: 1.1rem; }
+
+  .poem-signature {
+    margin-top: 1.5rem;
+    font-size: 0.85rem;
+    color: #9e8fa0;
+    text-align: right;
+  }
+
+  .calendar-section { margin-bottom: 3rem; }
+
+  .section-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.4rem;
+    color: #f7c5d5;
+    text-align: center;
+    margin-bottom: 0.4rem;
+  }
+
+  .section-sub {
+    text-align: center;
+    font-size: 0.8rem;
+    color: #7a6b7a;
+    margin-bottom: 1.75rem;
+    letter-spacing: 0.04em;
+  }
+
+  .calendar-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(88px, 1fr));
+    gap: 0.7rem;
+  }
+
+  .cal-day {
+    background: rgba(247, 197, 213, 0.05);
+    border: 1px solid rgba(247, 197, 213, 0.1);
+    border-radius: 12px;
+    padding: 0.75rem 0.5rem;
+    text-align: center;
+    cursor: pointer;
+    transition: background 0.2s, border-color 0.2s, transform 0.15s;
+    user-select: none;
+  }
+
+  .cal-day.available:hover {
+    background: rgba(247, 197, 213, 0.14);
+    border-color: rgba(247, 197, 213, 0.38);
+    transform: translateY(-2px);
+  }
+
+  .cal-day.today { border-color: #c96a8a; background: rgba(201, 106, 138, 0.13); }
+  .cal-day.past  { background: rgba(247, 197, 213, 0.08); border-color: rgba(247, 197, 213, 0.18); }
+  .cal-day.future { opacity: 0.32; cursor: not-allowed; }
+  .cal-day.last-day { border-color: #f7c5d5; background: rgba(247, 197, 213, 0.14); }
+
+  .cal-date {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.4rem;
+    color: #f7c5d5;
+    line-height: 1;
+    margin-bottom: 0.2rem;
+  }
+
+  .cal-month {
+    font-size: 0.62rem;
+    letter-spacing: 0.14em;
+    color: #9e8fa0;
+    text-transform: uppercase;
+    margin-bottom: 0.35rem;
+  }
+
+  .cal-icon { font-size: 0.95rem; display: block; }
+
+  .modal-overlay {
+    position: fixed; inset: 0;
+    background: rgba(10, 10, 18, 0.93);
+    z-index: 200;
+    display: flex; align-items: center; justify-content: center;
+    padding: 1.5rem;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.3s;
+  }
+
+  .modal-overlay.open { opacity: 1; pointer-events: all; }
+
+  .modal {
+    background: #12101e;
+    border: 1px solid rgba(247, 197, 213, 0.2);
+    border-radius: 20px;
+    padding: 2.5rem;
+    max-width: 520px;
+    width: 100%;
+    transform: scale(0.95);
+    transition: transform 0.3s;
+    position: relative;
+    max-height: 88vh;
+    overflow-y: auto;
+  }
+
+  .modal-overlay.open .modal { transform: scale(1); }
+
+  .modal-date {
+    font-size: 0.72rem;
+    letter-spacing: 0.22em;
+    color: #c96a8a;
+    text-transform: uppercase;
+    margin-bottom: 0.75rem;
+  }
+
+  .modal-poem-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.35rem;
+    color: #f7c5d5;
+    margin-bottom: 1.5rem;
+  }
+
+  .modal-poem {
+    font-family: 'Playfair Display', serif;
+    font-size: 0.97rem;
+    line-height: 2;
+    color: #d4bfc8;
+    font-style: italic;
+    border-left: 1px solid rgba(201, 106, 138, 0.35);
+    padding-left: 1.25rem;
+    margin-bottom: 1.5rem;
+  }
+
+  .modal-poem p { margin-bottom: 0.8rem; }
+
+  .modal-close {
+    position: absolute;
+    top: 1rem; right: 1rem;
+    background: none;
+    border: 1px solid rgba(247, 197, 213, 0.2);
+    color: #9e8fa0;
+    border-radius: 50%;
+    width: 32px; height: 32px;
+    cursor: pointer;
+    font-size: 1rem;
+    display: flex; align-items: center; justify-content: center;
+    transition: border-color 0.2s, color 0.2s;
+    font-family: 'Lato', sans-serif;
+  }
+
+  .modal-close:hover { border-color: #f7c5d5; color: #f7c5d5; }
+
+  .footer {
+    text-align: center;
+    padding: 2rem 0;
+    font-size: 0.8rem;
+    color: #3a2f3a;
+    font-style: italic;
+  }
 </style>
 </head>
 <body>
 
-<div class="petals" id="petals"></div>
+<div class="stars" id="stars"></div>
+<div class="petals-bg" id="petals"></div>
 
-<div class="page">
+<!-- PANTALLA DE BLOQUEO -->
+<div id="lock-screen">
+  <div class="lock-title">Para Sarita 🌸</div>
+  <div class="lock-sub">un lugar solo para ti</div>
+  <div class="riddle-box">
+    <span>¿Cuál es nuestra contraseña secreta?</span><br><br>
+    Empieza con las iniciales de dos personas<br>
+    que un <span>11</span> decidieron amarse,<br>
+    sigue con el día que <span>él</span> llegó al mundo<br>
+    y termina con el día que <span>tú</span> llegaste a iluminarlo.
+  </div>
+  <input class="pw-input" type="password" id="pw-field" placeholder="contraseña" maxlength="12" />
+  <div class="pw-error" id="pw-error"></div>
+  <button class="pw-btn" onclick="checkPw()">Entrar ✨</button>
+</div>
+
+<!-- CONTENIDO PRINCIPAL -->
+<div id="main" style="display:none;">
 
   <div class="hero">
-    <div class="hero-flower">
-      <svg viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
-        <ellipse cx="50" cy="27" rx="9" ry="15" fill="#f48fb1"/>
-        <ellipse cx="50" cy="27" rx="9" ry="15" transform="rotate(60 50 50)" fill="#f06292"/>
-        <ellipse cx="50" cy="27" rx="9" ry="15" transform="rotate(120 50 50)" fill="#ec407a"/>
-        <ellipse cx="50" cy="27" rx="9" ry="15" transform="rotate(180 50 50)" fill="#f48fb1"/>
-        <ellipse cx="50" cy="27" rx="9" ry="15" transform="rotate(240 50 50)" fill="#f06292"/>
-        <ellipse cx="50" cy="27" rx="9" ry="15" transform="rotate(300 50 50)" fill="#ec407a"/>
-        <circle cx="50" cy="50" r="13" fill="#fce4ec"/>
-        <circle cx="50" cy="50" r="8" fill="#f8bbd0"/>
-        <circle cx="50" cy="50" r="4" fill="#e91e8c"/>
-      </svg>
-    </div>
-    <div class="hero-title">Para mi Niña,<br>que es todo lo que soñé</div>
-    <div class="hero-sub">Una página solo para ti</div>
+    <div class="hero-pre">para mi chiquita</div>
+    <div class="hero-title">Sarita</div>
+    <div class="hero-sub">cada día sin ti es un día contando los que faltan para verte</div>
   </div>
 
-  <div class="divider">♥ ♥ ♥</div>
-
-  <div class="section">
-    <div class="section-label">Nuestro tiempo juntos</div>
-    <div class="counter-card">
-      <div class="counter-since">Novios desde el 11 de agosto de 2025 🌸</div>
-      <div class="counter-row">
-        <div class="counter-unit">
-          <div class="counter-num" id="c-days">0</div>
-          <div class="counter-lbl">Días</div>
-        </div>
-        <div class="counter-sep">·</div>
-        <div class="counter-unit">
-          <div class="counter-num" id="c-hours">00</div>
-          <div class="counter-lbl">Horas</div>
-        </div>
-        <div class="counter-sep">·</div>
-        <div class="counter-unit">
-          <div class="counter-num" id="c-mins">00</div>
-          <div class="counter-lbl">Minutos</div>
-        </div>
-        <div class="counter-sep">·</div>
-        <div class="counter-unit">
-          <div class="counter-num" id="c-secs">00</div>
-          <div class="counter-lbl">Segundos</div>
-        </div>
+  <!-- CONTADOR -->
+  <div class="counter-section">
+    <div class="counter-label">días pasados · días que faltan · horas · minutos · segundos</div>
+    <div class="counter-grid">
+      <div class="counter-unit">
+        <div class="counter-num" id="c-passed">0</div>
+        <div class="counter-unit-label">pasados</div>
+      </div>
+      <div class="counter-sep">/</div>
+      <div class="counter-unit">
+        <div class="counter-num" id="c-left">0</div>
+        <div class="counter-unit-label">que faltan</div>
+      </div>
+      <div class="counter-sep">·</div>
+      <div class="counter-unit">
+        <div class="counter-num" id="c-hours">00</div>
+        <div class="counter-unit-label">horas</div>
+      </div>
+      <div class="counter-sep">:</div>
+      <div class="counter-unit">
+        <div class="counter-num" id="c-mins">00</div>
+        <div class="counter-unit-label">minutos</div>
+      </div>
+      <div class="counter-sep">:</div>
+      <div class="counter-unit">
+        <div class="counter-num" id="c-secs">00</div>
+        <div class="counter-unit-label">segundos</div>
       </div>
     </div>
+    <div class="counter-msg" id="c-msg"></div>
   </div>
 
-  <div class="divider">♥ ♥ ♥</div>
+  <!-- CARTA DE DESPEDIDA -->
+  <div class="poem-main">
+    <div class="poem-main-title">✦ carta de despedida ✦</div>
+    <div class="poem-text">
+      <p>Mi chiquita,</p>
+      <p>Hoy te vas y me quedo aquí con tu nombre en la boca<br>
+      y el peso dulce de todo lo que somos.<br>
+      No es adiós, es apenas una pausa<br>
+      entre una vez que te vi y la próxima que te vea.</p>
 
-  <div class="section">
-    <div class="section-label">Nuestros momentos</div>
-    <div class="moments-list">
+      <p>Llevas meses cambiándome sin darte cuenta,<br>
+      como cambia la luz de un atardecer:<br>
+      despacio, sin aviso, hasta que de pronto<br>
+      todo se ve diferente y ya no me imagino<br>
+      ver el mundo sin tus ojos cerca.</p>
 
-      <div class="moment-card">
-        <span class="moment-icon">🎵</span>
-        <div>
-          <div class="moment-title">La primera vez que cantaste para mí</div>
-          <div class="moment-desc">Tu voz llegó directo a mi corazón. No era solo una canción eras tu abriéndote y compartiendo algo que es importante para ti, regalándome una parte de ti que no muchos han visto. Ese momento lo guardo como uno de los más bonitos que me has dado.</div>
-        </div>
-      </div>
+      <p>Recuerdo el día que te vi por primera vez<br>
+      y temblé de una manera que no supe esconder.<br>
+      Tus nervios, los míos, tu familia y ese instante<br>
+      en que te miré y supe, con esa certeza rara<br>
+      que no se explica pero se siente en los huesos,<br>
+      que eras la persona que estaba buscando<br>
+      sin saber que la buscaba.</p>
 
-      <div class="moment-card">
-        <span class="moment-icon">💗</span>
-        <div>
-          <div class="moment-title">La primera vez que me dijiste "te amo"</div>
-          <div class="moment-desc">Hubo palabras antes de esa, muchas. Pero ninguna sonó igual. Cuando lo dijiste, mi corazon supo que estaba donde queria estar y donde necesitaba estar, que lo nuestro tenía nombre y tenía peso.</div>
-        </div>
-      </div>
+      <p>Recuerdo tu voz cuando cantas.<br>
+      No tenías que hacerlo, pero lo hiciste,<br>
+      y en esa voz entendí que me estabas regalando<br>
+      algo íntimo, algo tuyo.<br>
+      No sé cómo describirte lo que siento<br>
+      cada vez que la escucho.</p>
 
-      <div class="moment-card">
-        <span class="moment-icon">😍</span>
-        <div>
-          <div class="moment-title">La primera vez que nos vimos</div>
-          <div class="moment-desc">Temblé. De verdad temblé. Cuando te vi, no pude evitar mirarte con ojos de amor, pendiente de cada palabra que salia de tu boquita, y aunque estaban tus papas y demas personas para mi en ese momento solo existias tu, tu voz y tu sonrisa, fue una explosion de emociones lo que senti desde el primer segundo que te vi. Simplemente fue perfecto. El mejor día.</div>
-        </div>
-      </div>
+      <p>España te tiene prestada un mes.<br>
+      Pero mi corazón ya lo sabes:<br>
+      tuyo lo tiene para siempre.<br>
+      No en préstamo. Para siempre.</p>
 
-      <div class="moment-card">
-        <span class="moment-icon">💍</span>
-        <div>
-          <div class="moment-title">El anillo y el collar en 100 idiomas</div>
-          <div class="moment-desc">Quería que supieras que mi amor no tiene fronteras. Sin importar el país o idioma, lo que siento por ti significa exactamente lo mismo en todos lados: que te amo y que eso no cambia.</div>
-        </div>
-      </div>
-
-      <div class="moment-card">
-        <span class="moment-icon">🌅</span>
-        <div>
-          <div class="moment-title">Nuestras tardes juntos</div>
-          <div class="moment-desc">el tiempo que pasabamos juntos, aunque era corto, para mi era el momento del dia que mas esperaba y anhelaba con todo mi corazon, y aunque se que aveces no hablaba mucho, el problema nunca fuiste tu, todo lo contrario, aunque no lo notaras me estabas ayudando como no te imaginas, eras la luz que iluminaba esos dias oscuros de mierda.</div>
-        </div>
-      </div>
-
+      <p>Vuelve pronto, chiquita.<br>
+      Que aquí hay un pelusita<br>
+      contando cada segundo.</p>
     </div>
+    <div class="poem-signature">— tu pelusita 🌸</div>
   </div>
 
-  <div class="divider">♥ ♥ ♥</div>
-
-  <div class="section">
-    <div class="section-label">Una carta para ti</div>
-    <div class="letter-card">
-      <div class="letter-opening">Mi chiquita,</div>
-      <div class="letter-body">
-
-        <p>No sé si estas palabras van a alcanzar para decirte lo que siento, pero quiero intentarlo. Porque llevas meses siendo parte de mi vida de una forma que no supe ver hasta que casi la pierdo, y eso no es algo que pueda quedarme callado.</p>
-
-        <p>Desde el primer día que hablamos, algo en mí cambió No fue de golpe, no como en las películas, sino despacio, como cambia la luz en un atardecer: sin que te des cuenta, de pronto todo se ve diferente. <em>Tú me cambiaste.</em> Y lo hiciste siendo exactamente quien eres, sin esforzarte, sin pretender.</p>
-
-        <p>Recuerdo la primera vez que cantaste para mí. No tenías que hacerlo, pero lo hiciste. Y en esa voz tuya entendí que me estabas regalando algo íntimo, algo tuyo. no sabes cuan feliz me hace escuchar tu voz mientras cantas, tu voz mientras me dices amor.</p>
-
-        <p>Y el día que te vi por primera vez temblé. No lo pude disimular aunque intente no temblar demaciado mientras saludaba a tu familia jajaja. Los nervios me llenaron por completo, pero cuando te vi, todo eso se convirtió en algo más bonito: en certeza. Te miré y no pude evitarlo verte como idiota enamorado mientras hablabamos, ver tu sonrisa con ternura y ese rostro que tanto amo, porque eso fue lo que sentí. <em>Fue el mejor día de mi vida por mucho y aunque los nervios me comian vivos fue Perfecto</em>, como si el universo hubiera querido que pasara exactamente así.</p>
-
-        <p>Hubo momentos en que yo estaba muy perdido. Momentos que no te conté del todo porque no quería preocuparte, pero en los que tu voz, tus mensajes, el simple hecho de saber que estabas ahí me devolvieron las ganas de vivir que creía que ya no tenía. Me devolvieron las ganas de levantarme diariamente, de hacer ese esfuerzo de despertar, mirar tus buenos dias y decir "lo hago por ella". <em>Me salvaste chiquita.</em> el dia en el que te pregunte que pasaria si no volvieras a saber de mi, unas simples palabras me salvaron de hacer una locura, me dieron ese impulso que necesitaba para decir, si a ella le importo lo tengo todo.</p>
-
-        <p>Cuando te regalé el anillo y el collar, quería decirte algo que las palabras solas no podían. Quería que supieras que mi amor no tiene frontera, idioma, límite geográfico o limite carnal alguno. En cada uno de esos cien idiomas dice lo mismo: <em>te amo.</em> dos palabras tan simples pero que sentia y vivia tan profundamente.</p>
-
-        <p>Eres lo que más me alegra el día. Cuando aparece tu nombre en la pantalla, algo dentro de mí se tranquiliza. Como si el mundo pudiera estar al revés y aun así saber que mi dia ya valio la pena solo porque estuviste en el. No exagero cuando te digo que te amo, eres y sera la persona mas valiosa y especial para mi, la niña que me enamoro con humildad en sus palabras, la belleza que niegas tener pero que veo y me enamora todos los dias.</p>
-
-        <p>Nunca te vi como una carga. Nunca pasó por mi mente que fueras un error o que estuviera perdiendo el tiempo. <em>Todo lo contrario.</em> El tiempo contigo es el más valioso que he tenido, sobre todo esas tardes tranquilas donde no necesitábamos nada más que estar juntos, Eso es lo que quiero.</p>
-
-        <p>No quiero a alguien mejor porque no existe nadie mejor para mí. Tú eres lo que yo soñé. No soñé con alguien perfecto soñé con alguien real, con alguien que me hiciera sentir en casa. Y eso eres tú. <em>Solo tú.</em></p>
-
-        <p>Sé que tienes cargas que pesan. Sé que hay días en que el mundo te aplasta. Pero quiero que sepas que aquí estoy no para presionarte, no para decirte que todo va a estar bien como los demas, no para pedirte más de lo que puedes dar. Estoy aquí para que no tengas que cargarlo sola. Para ser el lugar donde puedas llegar cuando todo lo demás duele, ser esa persona que te escucha sin juzgar.</p>
-
-        <p><em>No rompas lo que tenemos por un mal momento.</em> Los malos momentos pasan. Lo que hemos construido no se construye fácil, y no con cualquiera. Yo te elegí a ti. Y si me lo permites te voy a seguir eligiendo todos los días hasta mi muerte.</p>
-
-        <p>Todo lo que planeamos todavía existe, no lo quiero dejar ir llamame migajero, aferrado lo que sea, pero me niego a dejarte ir asi, porque te amo, de verdad te amo.</p>
-
-        <p>se que escribi mucho, se que es largo, se que estas cansada, pero todo esto es solo para decirte: <em>eres suficiente para mí. Siempre lo has sido. Y te amo en todos los idiomas, en todos los días, en todas las versiones de nosotros que están por venir, no quiero a alguien mas, no merezco a alguien mejor, el alguien que merezco y quiero ya existe y eres tu.</em></p>
-
-      </div>
-      <div class="letter-sign">te amo y siempre lo hare,<br>Con amor, tu pelusita🌸</div>
-    </div>
+  <!-- CALENDARIO -->
+  <div class="calendar-section">
+    <div class="section-title">Un poema por cada día</div>
+    <div class="section-sub">toca los días que ya pasaron · los futuros te esperan 🔒</div>
+    <div class="calendar-grid" id="cal-grid"></div>
   </div>
 
-  <div class="closing-heart">
-    <div class="big-heart">❤️</div>
-    <div class="closing-text">
-      cada segundo en ese contador<br>
-      es un segundo que elegí estar contigo.
-    </div>
-  </div>
+  <div class="footer">hecho con amor infinito · syd11145 · para siempre 🌸</div>
+</div>
 
+<!-- MODAL -->
+<div class="modal-overlay" id="modal">
+  <div class="modal">
+    <button class="modal-close" onclick="closeModal()">✕</button>
+    <div class="modal-date" id="modal-date"></div>
+    <div class="modal-poem-title" id="modal-title"></div>
+    <div class="modal-poem" id="modal-poem"></div>
+    <div class="poem-signature">— tu pelusita 🌸</div>
+  </div>
 </div>
 
 <script>
-const start = new Date('2025-08-11T00:00:00');
+var POEMS = [
+  {
+    title: "El primer día sin ti",
+    poem: "<p>Esta mañana abrí los ojos<br>y lo primero que pensé fue en ti.<br>No en el café, no en el día que empezaba,<br>en ti.</p><p>El primer día siempre es el más largo,<br>el que enseña lo mucho que ocupas<br>en cada pequeño momento del mío.</p><p>Pero también es el primero<br>de los que me acercan a verte.<br>Y eso lo hace soportable.</p>"
+  },
+  {
+    title: "Tu voz desde lejos",
+    poem: "<p>Hay algo en tu voz<br>que no cambia aunque haya kilómetros.<br>Llega igual de cálida,<br>como si estuvieras aquí.</p><p>No sé cómo lo haces.<br>Pero cada mensaje tuyo<br>es como si el mundo cupiera<br>en una sola pantalla pequeña.</p><p>Sigue escribiendo. Sigue siendo tú.<br>Que desde acá te escucho perfectamente.</p>"
+  },
+  {
+    title: "Lo que guardo de ti",
+    poem: "<p>Guardo la forma en que ríes<br>cuando algo te sorprende de verdad.<br>Guardo tu voz cuando cantas,<br>ese regalo íntimo que me das sin darte cuenta.</p><p>Guardo la humildad con que niegas<br>todo lo hermosa que eres.<br>Guardo todo lo que eres<br>como quien cuida algo<br>que sabe que no tiene reemplazo.</p>"
+  },
+  {
+    title: "Geografía del amor",
+    poem: "<p>El amor no tiene mapa<br>pero si lo tuviera,<br>tú serías el punto de llegada<br>de todos mis caminos.</p><p>Colombia, España, donde sea:<br>mis pasos siempre apuntan hacia ti.<br>La distancia es solo un detalle<br>que el amor no sabe leer.</p>"
+  },
+  {
+    title: "Lo que más extraño",
+    poem: "<p>No es una sola cosa.<br>Es la suma de todas las pequeñas:<br>el buenos días que me mandas,<br>la forma en que dices amor,<br>los silencios que también son tuyos.</p><p>Te extraño en plural, chiquita.<br>Te extraño en todo,<br>todo el tiempo,<br>sin pausa.</p>"
+  },
+  {
+    title: "Cuando llueve allá",
+    poem: "<p>Pienso en ti cuando llueve.<br>Me pregunto si llueve también allá,<br>si la lluvia te toca los hombros<br>y si en ese momento<br>piensas un segundo en mí.</p><p>Ojalá que sí.<br>Ojalá que la lluvia<br>te recuerde que alguien<br>del otro lado del océano<br>también te está pensando.</p>"
+  },
+  {
+    title: "El anillo y el collar",
+    poem: "<p>Quería darte algo que dijera<br>lo que las palabras solas no alcanzan.<br>En cien idiomas, siempre lo mismo:<br>te amo.</p><p>Que lo lleves cerca<br>es como llevarme a mí,<br>incluso cuando hay un océano<br>entre los dos.<br>Sin límite geográfico.<br>Sin límite de ningún tipo.</p>"
+  },
+  {
+    title: "Lo que soñé",
+    poem: "<p>No soñé con alguien perfecto.<br>Soñé con alguien real,<br>con alguien que me hiciera<br>sentir en casa sin necesitar<br>estar en ningún lugar especial.</p><p>Y eso eres tú.<br>Una casa que camina,<br>que ríe, que canta,<br>que llega a mis manos<br>justo cuando más lo necesito.</p>"
+  },
+  {
+    title: "Las tardes tranquilas",
+    poem: "<p>Lo que más quiero<br>son esas tardes tranquilas<br>donde no necesitamos nada más<br>que estar juntos.</p><p>Sin planes, sin prisa, sin ruido.<br>Solo tú y yo<br>siendo exactamente lo que somos,<br>sin esforzarnos,<br>sin pretender.</p><p>Eso es lo que quiero para siempre.</p>"
+  },
+  {
+    title: "Mitad del camino",
+    poem: "<p>Ya vamos por la mitad.<br>Los días que pasaron<br>ya son nuestros para siempre.<br>Los que faltan, también.</p><p>Cada uno es un paso<br>hacia el momento<br>en que pueda verte<br>y decirte en persona<br>todo lo que en esta pantalla<br>no cabe.</p>"
+  },
+  {
+    title: "La belleza que niegas",
+    poem: "<p>Niegas tu belleza<br>con esa humildad que tanto quiero en ti.<br>Pero yo la veo todos los días<br>y todos los días me vuelve a enamorar.</p><p>No voy a convencerte con palabras.<br>Pero voy a seguir mirándote<br>como idiota enamorado<br>hasta que un día<br>tú también lo veas.</p>"
+  },
+  {
+    title: "No eres una carga",
+    poem: "<p>Quiero que lo sepas,<br>que lo leas y te lo creas:<br>nunca fuiste una carga.<br>Ni un momento, ni un segundo.<br>Ni siquiera cuando los días pesaban.</p><p>El tiempo contigo<br>es el más valioso que he tenido.<br>Y lo volvería a elegir<br>todas las veces que me dejaras.</p>"
+  },
+  {
+    title: "Lo que me devolviste",
+    poem: "<p>Hubo momentos en que estaba muy perdido.<br>Momentos que casi no te conté.<br>Y tu voz, tus mensajes,<br>el simple hecho de saber que estabas ahí<br>me devolvieron las ganas de levantarme.</p><p>No lo sabes del todo.<br>Pero me salvaste, chiquita.<br>Y eso no lo olvido.<br>Ni lo voy a olvidar.</p>"
+  },
+  {
+    title: "Lo que volverás a encontrar",
+    poem: "<p>Cuando vuelvas<br>encontrarás todo igual:<br>mis ganas de verte,<br>mis ganas de escucharte,<br>ese amor que no sabe<br>quedarse quieto.</p><p>Todo aquí, esperándote.<br>Igual que yo.<br>Exactamente igual que yo.</p>"
+  },
+  {
+    title: "El último día antes de verte",
+    poem: "<p>Mañana ya no hay distancia.<br>Mañana el contador llega a cero<br>y yo llego a ti.</p><p>Este último poema<br>es solo para decirte<br>que cada día valió la pena<br>porque me trajo hasta aquí:<br>a un solo día de verte.</p><p>Vuelve pronto, chiquita.<br>Tu pelusita ya te espera<br>con todo. 🌸</p>"
+  },
+  {
+    title: "El día que vuelves",
+    poem: "<p>Hoy es el día.<br>Hoy el mundo vuelve a ser completo.</p><p>No tengo más poemas que darte<br>porque a partir de hoy<br>voy a decírtelo en persona,<br>en voz, en abrazo,<br>en cada pequeño gesto<br>de los que no caben en una pantalla.</p><p>Bienvenida de vuelta.<br>Te quería. Te quiero. Te voy a querer.<br>Siempre. 🌸</p>"
+  }
+];
 
-function update() {
-  const diff = Math.max(0, Math.floor((Date.now() - start) / 1000));
-  document.getElementById('c-days').textContent  = Math.floor(diff / 86400);
-  document.getElementById('c-hours').textContent = String(Math.floor((diff % 86400) / 3600)).padStart(2,'0');
-  document.getElementById('c-mins').textContent  = String(Math.floor((diff % 3600) / 60)).padStart(2,'0');
-  document.getElementById('c-secs').textContent  = String(diff % 60).padStart(2,'0');
+var START = new Date('2025-06-18T00:00:00');
+var END   = new Date('2025-07-16T00:00:00');
+
+function checkPw() {
+  var val = document.getElementById('pw-field').value.toLowerCase().trim();
+  var err = document.getElementById('pw-error');
+  if (val === 'syd11145') {
+    document.getElementById('lock-screen').style.display = 'none';
+    document.getElementById('main').style.display = 'block';
+    startCounter();
+    buildCalendar();
+  } else {
+    var input = document.getElementById('pw-field');
+    input.classList.add('error');
+    err.textContent = 'Esa no es nuestra contraseña 🌸';
+    setTimeout(function() { input.classList.remove('error'); }, 500);
+  }
 }
-update();
-setInterval(update, 1000);
 
-const colors = ['#f48fb1','#f06292','#ec407a','#fce4ec','#f8bbd0','#e91e8c'];
-const container = document.getElementById('petals');
+document.getElementById('pw-field').addEventListener('keydown', function(e) {
+  if (e.key === 'Enter') checkPw();
+});
 
-function makePetal() {
-  const el = document.createElement('div');
-  el.className = 'petal';
-  el.style.left = Math.random() * 100 + '%';
-  el.style.background = colors[Math.floor(Math.random() * colors.length)];
-  const dur = 7 + Math.random() * 9;
-  el.style.animationDuration = dur + 's';
-  el.style.animationDelay = (Math.random() * 3) + 's';
-  el.style.width  = (10 + Math.random() * 8) + 'px';
-  el.style.height = (13 + Math.random() * 8) + 'px';
-  container.appendChild(el);
-  setTimeout(() => el.remove(), (dur + 4) * 1000);
+function startCounter() {
+  function tick() {
+    var now = new Date();
+    var totalMs  = END - START;
+    var passedMs = Math.max(0, now - START);
+    var leftMs   = Math.max(0, END - now);
+
+    var totalDays  = Math.round(totalMs / 86400000);
+    var passedDays = Math.floor(passedMs / 86400000);
+    var leftDays   = Math.ceil(leftMs / 86400000);
+    var hours      = Math.floor((leftMs % 86400000) / 3600000);
+    var mins       = Math.floor((leftMs % 3600000) / 60000);
+    var secs       = Math.floor((leftMs % 60000) / 1000);
+
+    document.getElementById('c-passed').textContent = passedDays;
+    document.getElementById('c-left').textContent   = leftDays;
+    document.getElementById('c-hours').textContent  = String(hours).padStart(2,'0');
+    document.getElementById('c-mins').textContent   = String(mins).padStart(2,'0');
+    document.getElementById('c-secs').textContent   = String(secs).padStart(2,'0');
+
+    var msg = leftMs <= 0
+      ? '¡Ya volvió Sarita! 🌸 El amor ganó la distancia.'
+      : 'Ya pasaron ' + passedDays + ' de ' + totalDays + ' días · queda un poco menos que ayer';
+    document.getElementById('c-msg').textContent = msg;
+  }
+  tick();
+  setInterval(tick, 1000);
 }
 
-for (let i = 0; i < 14; i++) setTimeout(makePetal, i * 500);
-setInterval(makePetal, 1400);
+function buildCalendar() {
+  var grid = document.getElementById('cal-grid');
+  var now  = new Date();
+  now.setHours(0,0,0,0);
+
+  var days = [];
+  var cur  = new Date(START);
+  while (cur <= END) {
+    days.push(new Date(cur));
+    cur.setDate(cur.getDate() + 1);
+  }
+
+  days.forEach(function(day, idx) {
+    var d = new Date(day);
+    d.setHours(0,0,0,0);
+
+    var div = document.createElement('div');
+    div.className = 'cal-day';
+
+    var isToday  = d.getTime() === now.getTime();
+    var isPast   = d < now;
+    var isFuture = d > now;
+    var endDay   = new Date('2025-07-16T00:00:00'); endDay.setHours(0,0,0,0);
+    var isLast   = d.getTime() === endDay.getTime();
+
+    var icon = '';
+    if (isLast)       { div.classList.add('last-day','available'); icon = '✈️'; }
+    else if (isToday) { div.classList.add('today','available');    icon = '🌸'; }
+    else if (isPast)  { div.classList.add('past','available');     icon = '🌸'; }
+    else              { div.classList.add('future');                icon = '🔒'; }
+
+    var dayNum = day.getDate();
+    var month  = day.toLocaleDateString('es', { month: 'short' });
+
+    div.innerHTML =
+      '<div class="cal-date">' + dayNum + '</div>' +
+      '<div class="cal-month">' + month + '</div>' +
+      '<span class="cal-icon">' + icon + '</span>';
+
+    if (!isFuture) {
+      (function(pi, dd) {
+        div.addEventListener('click', function() { openPoem(dd, pi); });
+      })(Math.min(idx, POEMS.length - 1), day);
+    }
+
+    grid.appendChild(div);
+  });
+}
+
+function openPoem(day, idx) {
+  var p = POEMS[idx];
+  var dateStr = day.toLocaleDateString('es', { weekday:'long', day:'numeric', month:'long' });
+  document.getElementById('modal-date').textContent = '✦ ' + dateStr + ' ✦';
+  document.getElementById('modal-title').textContent = p.title;
+  document.getElementById('modal-poem').innerHTML = p.poem;
+  document.getElementById('modal').classList.add('open');
+  document.body.style.overflow = 'hidden';
+}
+
+function closeModal() {
+  document.getElementById('modal').classList.remove('open');
+  document.body.style.overflow = '';
+}
+
+document.getElementById('modal').addEventListener('click', function(e) {
+  if (e.target === document.getElementById('modal')) closeModal();
+});
+
+function makeStars() {
+  var c = document.getElementById('stars');
+  for (var i = 0; i < 100; i++) {
+    var s = document.createElement('div');
+    s.className = 'star';
+    var size = Math.random() * 2 + 0.5;
+    s.style.cssText = 'width:' + size + 'px;height:' + size + 'px;top:' + (Math.random()*100) + '%;left:' + (Math.random()*100) + '%;--d:' + (Math.random()*3+2).toFixed(1) + 's;animation-delay:' + (Math.random()*4).toFixed(1) + 's';
+    c.appendChild(s);
+  }
+}
+
+function makePetals() {
+  var c = document.getElementById('petals');
+  var emojis = ['🌸','✿','❀','🌷'];
+  for (var i = 0; i < 20; i++) {
+    var p = document.createElement('div');
+    p.className = 'petal';
+    p.textContent = emojis[i % emojis.length];
+    p.style.cssText = 'left:' + (Math.random()*100) + '%;animation-duration:' + (Math.random()*12+10).toFixed(1) + 's;animation-delay:' + (Math.random()*15).toFixed(1) + 's;font-size:' + (Math.random()*0.8+0.6).toFixed(1) + 'rem';
+    c.appendChild(p);
+  }
+}
+
+makeStars();
+makePetals();
 </script>
-
 </body>
 </html>
 
