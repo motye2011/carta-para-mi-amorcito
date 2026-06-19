@@ -21,399 +21,180 @@
     position: fixed; top: 0; left: 0; width: 100%; height: 100%;
     pointer-events: none; z-index: 0;
   }
-
   .star {
-    position: absolute;
-    background: white;
-    border-radius: 50%;
+    position: absolute; background: white; border-radius: 50%;
     animation: twinkle var(--d) ease-in-out infinite alternate;
   }
-
-  @keyframes twinkle {
-    from { opacity: 0.1; }
-    to { opacity: 0.8; }
-  }
+  @keyframes twinkle { from{opacity:0.1} to{opacity:0.8} }
 
   .petals-bg {
     position: fixed; top: 0; left: 0; width: 100%; height: 100%;
     pointer-events: none; z-index: 0; overflow: hidden;
   }
-
   .petal {
-    position: absolute;
-    animation: fall linear infinite;
-    opacity: 0.3;
+    position: absolute; animation: fall linear infinite; opacity: 0.25;
   }
-
   @keyframes fall {
-    0% { transform: translateY(-20px) rotate(0deg); opacity: 0; }
-    10% { opacity: 0.3; }
-    90% { opacity: 0.2; }
+    0%   { transform: translateY(-30px) rotate(0deg); opacity: 0; }
+    10%  { opacity: 0.25; }
+    90%  { opacity: 0.15; }
     100% { transform: translateY(100vh) rotate(360deg); opacity: 0; }
   }
 
   #lock-screen {
-    position: fixed; inset: 0;
-    background: #0a0a12;
+    position: fixed; inset: 0; background: #0a0a12;
     display: flex; align-items: center; justify-content: center;
-    z-index: 100;
-    flex-direction: column;
-    text-align: center;
-    padding: 2rem;
+    z-index: 100; flex-direction: column; text-align: center; padding: 2rem;
   }
-
   .lock-title {
     font-family: 'Playfair Display', serif;
-    font-size: clamp(1.8rem, 5vw, 3rem);
-    color: #f7c5d5;
-    margin-bottom: 0.5rem;
+    font-size: clamp(1.8rem,5vw,3rem); color: #f7c5d5; margin-bottom: 0.5rem;
   }
-
-  .lock-sub {
-    font-size: 0.95rem;
-    color: #9e8fa0;
-    margin-bottom: 2.5rem;
-    font-style: italic;
-  }
+  .lock-sub { font-size:.95rem; color:#9e8fa0; margin-bottom:2.5rem; font-style:italic; }
 
   .riddle-box {
-    background: rgba(247, 197, 213, 0.07);
-    border: 1px solid rgba(247, 197, 213, 0.2);
-    border-radius: 16px;
-    padding: 1.5rem 2rem;
-    max-width: 480px;
-    margin-bottom: 2rem;
-    line-height: 1.9;
-    font-size: 0.95rem;
-    color: #d4bfc8;
+    background: rgba(247,197,213,.07);
+    border: 1px solid rgba(247,197,213,.2);
+    border-radius: 16px; padding: 1.5rem 2rem;
+    max-width: 480px; margin-bottom: 2rem;
+    line-height: 1.9; font-size: .95rem; color: #d4bfc8;
   }
-
   .riddle-box span { color: #f7c5d5; }
 
   .pw-input {
-    background: rgba(255,255,255,0.05);
-    border: 1px solid rgba(247, 197, 213, 0.3);
-    border-radius: 50px;
-    padding: 0.75rem 1.5rem;
-    color: #f0e6d3;
-    font-size: 1rem;
-    text-align: center;
-    letter-spacing: 0.15em;
-    width: 220px;
-    outline: none;
-    font-family: 'Lato', sans-serif;
-    margin: 0 auto 0.75rem;
-    display: block;
-    transition: border-color 0.3s;
+    background: rgba(255,255,255,.05);
+    border: 1px solid rgba(247,197,213,.3);
+    border-radius: 50px; padding: .75rem 1.5rem;
+    color: #f0e6d3; font-size: 1rem; text-align: center;
+    letter-spacing: .15em; width: 220px; outline: none;
+    font-family: 'Lato',sans-serif;
+    margin: 0 auto .75rem; display: block;
+    transition: border-color .3s;
   }
-
   .pw-input:focus { border-color: #f7c5d5; }
-  .pw-input.error { border-color: #e06c75; animation: shake 0.4s ease; }
-
-  @keyframes shake {
-    0%,100%{transform:translateX(0)}25%{transform:translateX(-8px)}75%{transform:translateX(8px)}
-  }
+  .pw-input.error { border-color: #e06c75; animation: shake .4s ease; }
+  @keyframes shake { 0%,100%{transform:translateX(0)} 25%{transform:translateX(-8px)} 75%{transform:translateX(8px)} }
 
   .pw-btn {
-    background: linear-gradient(135deg, #c96a8a, #9b4a6e);
-    border: none;
-    border-radius: 50px;
-    padding: 0.75rem 2.5rem;
-    color: white;
-    font-size: 0.95rem;
-    cursor: pointer;
-    font-family: 'Lato', sans-serif;
-    letter-spacing: 0.05em;
-    transition: transform 0.2s, opacity 0.2s;
-    display: block;
-    margin: 0.75rem auto 0;
+    background: linear-gradient(135deg,#c96a8a,#9b4a6e);
+    border: none; border-radius: 50px; padding: .75rem 2.5rem;
+    color: white; font-size: .95rem; cursor: pointer;
+    font-family: 'Lato',sans-serif; letter-spacing: .05em;
+    transition: transform .2s, opacity .2s;
+    display: block; margin: .75rem auto 0;
   }
+  .pw-btn:hover { transform: scale(1.03); opacity: .9; }
+  .pw-error { color:#e06c75; font-size:.85rem; margin-top:.4rem; min-height:1.2rem; text-align:center; }
 
-  .pw-btn:hover { transform: scale(1.03); opacity: 0.9; }
+  #main { position:relative; z-index:1; max-width:860px; margin:0 auto; padding:2rem 1.5rem 4rem; }
 
-  .pw-error {
-    color: #e06c75;
-    font-size: 0.85rem;
-    margin-top: 0.4rem;
-    min-height: 1.2rem;
-    text-align: center;
-  }
-
-  #main { position: relative; z-index: 1; max-width: 860px; margin: 0 auto; padding: 2rem 1.5rem 4rem; }
-
-  .hero { text-align: center; padding: 3rem 0 2rem; }
-
-  .hero-pre {
-    font-size: 0.85rem;
-    letter-spacing: 0.3em;
-    color: #c96a8a;
-    text-transform: uppercase;
-    margin-bottom: 1rem;
-  }
-
-  .hero-title {
-    font-family: 'Playfair Display', serif;
-    font-size: clamp(2.5rem, 8vw, 5rem);
-    color: #f7c5d5;
-    line-height: 1.1;
-    margin-bottom: 1rem;
-  }
-
-  .hero-sub {
-    font-size: 1rem;
-    color: #9e8fa0;
-    font-style: italic;
-  }
+  .hero { text-align:center; padding:3rem 0 2rem; }
+  .hero-pre { font-size:.85rem; letter-spacing:.3em; color:#c96a8a; text-transform:uppercase; margin-bottom:1rem; }
+  .hero-title { font-family:'Playfair Display',serif; font-size:clamp(2.5rem,8vw,5rem); color:#f7c5d5; line-height:1.1; margin-bottom:1rem; }
+  .hero-sub { font-size:1rem; color:#9e8fa0; font-style:italic; }
 
   .counter-section {
-    background: rgba(247, 197, 213, 0.06);
-    border: 1px solid rgba(247, 197, 213, 0.15);
-    border-radius: 20px;
-    padding: 2rem;
-    text-align: center;
-    margin-bottom: 3rem;
+    background: rgba(247,197,213,.06);
+    border: 1px solid rgba(247,197,213,.15);
+    border-radius: 20px; padding: 2rem; text-align: center; margin-bottom: 3rem;
   }
-
-  .counter-label {
-    font-size: 0.78rem;
-    letter-spacing: 0.2em;
-    color: #9e8fa0;
-    text-transform: uppercase;
-    margin-bottom: 1.25rem;
-  }
-
-  .counter-grid {
-    display: flex;
-    justify-content: center;
-    align-items: flex-start;
-    gap: 0.75rem;
-    flex-wrap: wrap;
-  }
-
-  .counter-unit { display: flex; flex-direction: column; align-items: center; }
-
+  .counter-label { font-size:.78rem; letter-spacing:.2em; color:#9e8fa0; text-transform:uppercase; margin-bottom:1.25rem; }
+  .counter-grid { display:flex; justify-content:center; align-items:flex-start; gap:.75rem; flex-wrap:wrap; }
+  .counter-unit { display:flex; flex-direction:column; align-items:center; }
   .counter-num {
-    font-family: 'Playfair Display', serif;
-    font-size: clamp(2rem, 7vw, 4rem);
-    color: #f7c5d5;
-    line-height: 1;
-    min-width: 2ch;
-    text-align: center;
+    font-family:'Playfair Display',serif;
+    font-size:clamp(2rem,7vw,4rem); color:#f7c5d5;
+    line-height:1; min-width:2ch; text-align:center;
   }
-
-  .counter-sep {
-    font-family: 'Playfair Display', serif;
-    font-size: 2.5rem;
-    color: rgba(247, 197, 213, 0.25);
-    line-height: 1;
-  }
-
-  .counter-unit-label {
-    font-size: 0.65rem;
-    letter-spacing: 0.18em;
-    color: #7a6b7a;
-    text-transform: uppercase;
-    margin-top: 0.3rem;
-  }
-
-  .counter-msg {
-    margin-top: 1.25rem;
-    font-size: 0.88rem;
-    color: #c96a8a;
-    font-style: italic;
-  }
+  .counter-sep { font-family:'Playfair Display',serif; font-size:2.5rem; color:rgba(247,197,213,.25); line-height:1; }
+  .counter-unit-label { font-size:.65rem; letter-spacing:.18em; color:#7a6b7a; text-transform:uppercase; margin-top:.3rem; }
+  .counter-msg { margin-top:1.25rem; font-size:.88rem; color:#c96a8a; font-style:italic; }
 
   .poem-main {
-    background: rgba(247, 197, 213, 0.04);
+    background: rgba(247,197,213,.04);
     border-left: 2px solid #c96a8a;
     border-radius: 0 16px 16px 0;
     padding: 2.5rem 2rem 2rem 2.5rem;
-    margin-bottom: 3rem;
-    position: relative;
-    overflow: hidden;
+    margin-bottom: 3rem; position:relative; overflow:hidden;
   }
-
   .poem-main::before {
-    content: '\201C';
-    font-family: 'Playfair Display', serif;
-    font-size: 8rem;
-    color: rgba(201, 106, 138, 0.1);
-    position: absolute;
-    top: -1.5rem; left: 0.5rem;
-    line-height: 1;
-    pointer-events: none;
+    content:'\201C'; font-family:'Playfair Display',serif;
+    font-size:8rem; color:rgba(201,106,138,.1);
+    position:absolute; top:-1.5rem; left:.5rem; line-height:1; pointer-events:none;
   }
+  .poem-main-title { font-size:.72rem; letter-spacing:.3em; color:#c96a8a; text-transform:uppercase; margin-bottom:1.5rem; }
+  .poem-text { font-family:'Playfair Display',serif; font-size:1.05rem; line-height:2.1; color:#d4bfc8; font-style:italic; }
+  .poem-text p { margin-bottom:1.1rem; }
+  .poem-signature { margin-top:1.5rem; font-size:.85rem; color:#9e8fa0; text-align:right; }
 
-  .poem-main-title {
-    font-size: 0.72rem;
-    letter-spacing: 0.3em;
-    color: #c96a8a;
-    text-transform: uppercase;
-    margin-bottom: 1.5rem;
-  }
+  .calendar-section { margin-bottom:3rem; }
+  .section-title { font-family:'Playfair Display',serif; font-size:1.4rem; color:#f7c5d5; text-align:center; margin-bottom:.4rem; }
+  .section-sub { text-align:center; font-size:.8rem; color:#7a6b7a; margin-bottom:1.75rem; letter-spacing:.04em; }
 
-  .poem-text {
-    font-family: 'Playfair Display', serif;
-    font-size: 1.05rem;
-    line-height: 2.1;
-    color: #d4bfc8;
-    font-style: italic;
-  }
-
-  .poem-text p { margin-bottom: 1.1rem; }
-
-  .poem-signature {
-    margin-top: 1.5rem;
-    font-size: 0.85rem;
-    color: #9e8fa0;
-    text-align: right;
-  }
-
-  .calendar-section { margin-bottom: 3rem; }
-
-  .section-title {
-    font-family: 'Playfair Display', serif;
-    font-size: 1.4rem;
-    color: #f7c5d5;
-    text-align: center;
-    margin-bottom: 0.4rem;
-  }
-
-  .section-sub {
-    text-align: center;
-    font-size: 0.8rem;
-    color: #7a6b7a;
-    margin-bottom: 1.75rem;
-    letter-spacing: 0.04em;
-  }
-
-  .calendar-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(88px, 1fr));
-    gap: 0.7rem;
-  }
+  .calendar-grid { display:grid; grid-template-columns:repeat(auto-fill,minmax(88px,1fr)); gap:.7rem; }
 
   .cal-day {
-    background: rgba(247, 197, 213, 0.05);
-    border: 1px solid rgba(247, 197, 213, 0.1);
-    border-radius: 12px;
-    padding: 0.75rem 0.5rem;
-    text-align: center;
-    cursor: pointer;
-    transition: background 0.2s, border-color 0.2s, transform 0.15s;
-    user-select: none;
+    background: rgba(247,197,213,.05);
+    border: 1px solid rgba(247,197,213,.1);
+    border-radius: 12px; padding: .75rem .5rem;
+    text-align: center; user-select:none;
+    transition: background .2s, border-color .2s, transform .15s;
   }
-
-  .cal-day.available:hover {
-    background: rgba(247, 197, 213, 0.14);
-    border-color: rgba(247, 197, 213, 0.38);
+  .cal-day.unlocked { cursor:pointer; }
+  .cal-day.unlocked:hover {
+    background: rgba(247,197,213,.14);
+    border-color: rgba(247,197,213,.38);
     transform: translateY(-2px);
   }
+  .cal-day.is-today  { border-color:#c96a8a; background:rgba(201,106,138,.13); }
+  .cal-day.is-past   { background:rgba(247,197,213,.08); border-color:rgba(247,197,213,.18); }
+  .cal-day.is-future { opacity:.32; cursor:not-allowed; }
+  .cal-day.is-return { border-color:#f7c5d5; background:rgba(247,197,213,.14); }
 
-  .cal-day.today { border-color: #c96a8a; background: rgba(201, 106, 138, 0.13); }
-  .cal-day.past  { background: rgba(247, 197, 213, 0.08); border-color: rgba(247, 197, 213, 0.18); }
-  .cal-day.future { opacity: 0.32; cursor: not-allowed; }
-  .cal-day.last-day { border-color: #f7c5d5; background: rgba(247, 197, 213, 0.14); }
+  .cal-date { font-family:'Playfair Display',serif; font-size:1.4rem; color:#f7c5d5; line-height:1; margin-bottom:.2rem; }
+  .cal-month { font-size:.62rem; letter-spacing:.14em; color:#9e8fa0; text-transform:uppercase; margin-bottom:.35rem; }
+  .cal-icon  { font-size:.95rem; display:block; }
 
-  .cal-date {
-    font-family: 'Playfair Display', serif;
-    font-size: 1.4rem;
-    color: #f7c5d5;
-    line-height: 1;
-    margin-bottom: 0.2rem;
+  .thought-section {
+    background: rgba(247,197,213,.04);
+    border: 1px solid rgba(247,197,213,.12);
+    border-radius: 20px; padding: 2rem; text-align: center; margin-bottom: 3rem;
   }
-
-  .cal-month {
-    font-size: 0.62rem;
-    letter-spacing: 0.14em;
-    color: #9e8fa0;
-    text-transform: uppercase;
-    margin-bottom: 0.35rem;
-  }
-
-  .cal-icon { font-size: 0.95rem; display: block; }
+  .thought-title { font-family:'Playfair Display',serif; font-size:1.1rem; color:#f7c5d5; margin-bottom:.4rem; }
+  .thought-sub   { font-size:.8rem; color:#7a6b7a; font-style:italic; margin-bottom:1.25rem; }
 
   .modal-overlay {
-    position: fixed; inset: 0;
-    background: rgba(10, 10, 18, 0.93);
-    z-index: 200;
-    display: flex; align-items: center; justify-content: center;
-    padding: 1.5rem;
-    opacity: 0;
-    pointer-events: none;
-    transition: opacity 0.3s;
+    position:fixed; inset:0; background:rgba(10,10,18,.93);
+    z-index:200; display:flex; align-items:center; justify-content:center;
+    padding:1.5rem; opacity:0; pointer-events:none; transition:opacity .3s;
   }
-
-  .modal-overlay.open { opacity: 1; pointer-events: all; }
-
+  .modal-overlay.open { opacity:1; pointer-events:all; }
   .modal {
-    background: #12101e;
-    border: 1px solid rgba(247, 197, 213, 0.2);
-    border-radius: 20px;
-    padding: 2.5rem;
-    max-width: 520px;
-    width: 100%;
-    transform: scale(0.95);
-    transition: transform 0.3s;
-    position: relative;
-    max-height: 88vh;
-    overflow-y: auto;
+    background:#12101e; border:1px solid rgba(247,197,213,.2);
+    border-radius:20px; padding:2.5rem; max-width:520px; width:100%;
+    transform:scale(.95); transition:transform .3s;
+    position:relative; max-height:88vh; overflow-y:auto;
   }
-
-  .modal-overlay.open .modal { transform: scale(1); }
-
-  .modal-date {
-    font-size: 0.72rem;
-    letter-spacing: 0.22em;
-    color: #c96a8a;
-    text-transform: uppercase;
-    margin-bottom: 0.75rem;
-  }
-
-  .modal-poem-title {
-    font-family: 'Playfair Display', serif;
-    font-size: 1.35rem;
-    color: #f7c5d5;
-    margin-bottom: 1.5rem;
-  }
-
+  .modal-overlay.open .modal { transform:scale(1); }
+  .modal-date { font-size:.72rem; letter-spacing:.22em; color:#c96a8a; text-transform:uppercase; margin-bottom:.75rem; }
+  .modal-poem-title { font-family:'Playfair Display',serif; font-size:1.35rem; color:#f7c5d5; margin-bottom:1.5rem; }
   .modal-poem {
-    font-family: 'Playfair Display', serif;
-    font-size: 0.97rem;
-    line-height: 2;
-    color: #d4bfc8;
-    font-style: italic;
-    border-left: 1px solid rgba(201, 106, 138, 0.35);
-    padding-left: 1.25rem;
-    margin-bottom: 1.5rem;
+    font-family:'Playfair Display',serif; font-size:.97rem; line-height:2;
+    color:#d4bfc8; font-style:italic;
+    border-left:1px solid rgba(201,106,138,.35); padding-left:1.25rem; margin-bottom:1.5rem;
   }
-
-  .modal-poem p { margin-bottom: 0.8rem; }
-
+  .modal-poem p { margin-bottom:.8rem; }
   .modal-close {
-    position: absolute;
-    top: 1rem; right: 1rem;
-    background: none;
-    border: 1px solid rgba(247, 197, 213, 0.2);
-    color: #9e8fa0;
-    border-radius: 50%;
-    width: 32px; height: 32px;
-    cursor: pointer;
-    font-size: 1rem;
-    display: flex; align-items: center; justify-content: center;
-    transition: border-color 0.2s, color 0.2s;
-    font-family: 'Lato', sans-serif;
+    position:absolute; top:1rem; right:1rem;
+    background:none; border:1px solid rgba(247,197,213,.2);
+    color:#9e8fa0; border-radius:50%; width:32px; height:32px;
+    cursor:pointer; font-size:1rem;
+    display:flex; align-items:center; justify-content:center;
+    transition:border-color .2s,color .2s; font-family:'Lato',sans-serif;
   }
+  .modal-close:hover { border-color:#f7c5d5; color:#f7c5d5; }
 
-  .modal-close:hover { border-color: #f7c5d5; color: #f7c5d5; }
-
-  .footer {
-    text-align: center;
-    padding: 2rem 0;
-    font-size: 0.8rem;
-    color: #3a2f3a;
-    font-style: italic;
-  }
+  .footer { text-align:center; padding:2rem 0; font-size:.8rem; color:#3a2f3a; font-style:italic; }
 </style>
 </head>
 <body>
@@ -421,14 +202,13 @@
 <div class="stars" id="stars"></div>
 <div class="petals-bg" id="petals"></div>
 
-<!-- PANTALLA DE BLOQUEO -->
 <div id="lock-screen">
   <div class="lock-title">Para Sarita 🌸</div>
   <div class="lock-sub">un lugar solo para ti</div>
   <div class="riddle-box">
-    <span>¿Cuál es nuestra contraseña secreta?</span><br><br>
-    Empieza con las iniciales de dos personas<br>
-    que un <span>11</span> decidieron amarse,<br>
+    <span>¿Cuál es la contraseña secreta?</span><br><br>
+    Empieza con las iniciales de dos personas, la letra que va primero es de la mas chiquita,<br>
+    despues el <span>dia</span> que decidieron amarse,<br>
     sigue con el día que <span>él</span> llegó al mundo<br>
     y termina con el día que <span>tú</span> llegaste a iluminarlo.
   </div>
@@ -437,101 +217,82 @@
   <button class="pw-btn" onclick="checkPw()">Entrar ✨</button>
 </div>
 
-<!-- CONTENIDO PRINCIPAL -->
 <div id="main" style="display:none;">
 
   <div class="hero">
     <div class="hero-pre">para mi chiquita</div>
     <div class="hero-title">Sarita</div>
-    <div class="hero-sub">cada día sin ti es un día contando los que faltan para verte</div>
+    <div class="hero-sub">Ya que mi anterior regalo tuvo tanto exito</div>
   </div>
 
-  <!-- CONTADOR --a>
   <div class="counter-section">
-    <div class="counter-label">días pasados · días que faltan · horas · minutos · segundos</div>
+    <div class="counter-label">cuenta regresiva hasta que vuelvas</div>
     <div class="counter-grid">
       <div class="counter-unit">
-        <div class="counter-num" id="c-passed">0</div>
-        <div class="counter-unit-label">pasados</div>
+        <div class="counter-num" id="cd-days">--</div>
+        <div class="counter-unit-label">días</div>
       </div>
-      <div class="counter-sep">/</div>
+      <div class="counter-sep">:</div>
       <div class="counter-unit">
-        <div class="counter-num" id="c-left">0</div>
-        <div class="counter-unit-label">que faltan</div>
-      </div>
-      <div class="counter-sep">·</div>
-      <div class="counter-unit">
-        <div class="counter-num" id="c-hours">00</div>
+        <div class="counter-num" id="cd-hours">--</div>
         <div class="counter-unit-label">horas</div>
       </div>
       <div class="counter-sep">:</div>
       <div class="counter-unit">
-        <div class="counter-num" id="c-mins">00</div>
+        <div class="counter-num" id="cd-mins">--</div>
         <div class="counter-unit-label">minutos</div>
       </div>
       <div class="counter-sep">:</div>
       <div class="counter-unit">
-        <div class="counter-num" id="c-secs">00</div>
+        <div class="counter-num" id="cd-secs">--</div>
         <div class="counter-unit-label">segundos</div>
       </div>
     </div>
-    <div class="counter-msg" id="c-msg"></div>
+    <div class="counter-msg" id="cd-msg"></div>
   </div>
 
-  <!-- CARTA DE DESPEDIDA -->
   <div class="poem-main">
     <div class="poem-main-title">✦ carta de despedida ✦</div>
-    <div class="poem-text">
-      <p>Mi chiquita,</p>
-      <p>Hoy te vas y me quedo aquí con tu nombre en la boca<br>
-      y el peso dulce de todo lo que somos.<br>
-      No es adiós, es apenas una pausa<br>
-      entre una vez que te vi y la próxima que te vea.</p>
-
-      <p>Llevas meses cambiándome sin darte cuenta,<br>
-      como cambia la luz de un atardecer:<br>
-      despacio, sin aviso, hasta que de pronto<br>
-      todo se ve diferente y ya no me imagino<br>
-      ver el mundo sin tus ojos cerca.</p>
-
-      <p>Recuerdo el día que te vi por primera vez<br>
-      y temblé de una manera que no supe esconder.<br>
-      Tus nervios, los míos, tu familia y ese instante<br>
-      en que te miré y supe, con esa certeza rara<br>
-      que no se explica pero se siente en los huesos,<br>
-      que eras la persona que estaba buscando<br>
-      sin saber que la buscaba.</p>
-
-      <p>Recuerdo tu voz cuando cantas.<br>
-      No tenías que hacerlo, pero lo hiciste,<br>
-      y en esa voz entendí que me estabas regalando<br>
-      algo íntimo, algo tuyo.<br>
-      No sé cómo describirte lo que siento<br>
-      cada vez que la escucho.</p>
-
-      <p>España te tiene prestada un mes.<br>
-      Pero mi corazón ya lo sabes:<br>
-      tuyo lo tiene para siempre.<br>
-      No en préstamo. Para siempre.</p>
-
-      <p>Vuelve pronto, chiquita.<br>
-      Que aquí hay un pelusita<br>
-      contando cada segundo.</p>
-    </div>
+    <div class="poem-text" id="main-poem-text"></div>
     <div class="poem-signature">— tu pelusita 🌸</div>
   </div>
 
-  <!-- CALENDARIO -->
   <div class="calendar-section">
     <div class="section-title">Un poema por cada día</div>
-    <div class="section-sub">toca los días que ya pasaron · los futuros te esperan 🔒</div>
+    <div class="section-sub">toca los días que ya pasaron o el de hoy · los futuros te esperan 🔒</div>
     <div class="calendar-grid" id="cal-grid"></div>
   </div>
 
-  <div class="footer">hecho con amor infinito · syd11145 · para siempre 🌸</div>
+  <div class="thought-section">
+    <div class="thought-title">tiempo que he pensado en ti 💭</div>
+    <div class="thought-sub">desde el momento en que te fuiste, contando cada segundo</div>
+    <div class="counter-grid">
+      <div class="counter-unit">
+        <div class="counter-num" id="tp-days">--</div>
+        <div class="counter-unit-label">días</div>
+      </div>
+      <div class="counter-sep">:</div>
+      <div class="counter-unit">
+        <div class="counter-num" id="tp-hours">--</div>
+        <div class="counter-unit-label">horas</div>
+      </div>
+      <div class="counter-sep">:</div>
+      <div class="counter-unit">
+        <div class="counter-num" id="tp-mins">--</div>
+        <div class="counter-unit-label">minutos</div>
+      </div>
+      <div class="counter-sep">:</div>
+      <div class="counter-unit">
+        <div class="counter-num" id="tp-secs">--</div>
+        <div class="counter-unit-label">segundos</div>
+      </div>
+    </div>
+    <div class="counter-msg" id="tp-msg"></div>
+  </div>
+
+  <div class="footer">hecho con amor infinito · syd10145 · para siempre <3</div>
 </div>
 
-<!-- MODAL -->
 <div class="modal-overlay" id="modal">
   <div class="modal">
     <button class="modal-close" onclick="closeModal()">✕</button>
@@ -543,156 +304,289 @@
 </div>
 
 <script>
-var POEMS = [
-  {
-    title: "El primer día sin ti",
-    poem: "<p>Esta mañana abrí los ojos<br>y lo primero que pensé fue en ti.<br>No en el café, no en el día que empezaba,<br>en ti.</p><p>El primer día siempre es el más largo,<br>el que enseña lo mucho que ocupas<br>en cada pequeño momento del mío.</p><p>Pero también es el primero<br>de los que me acercan a verte.<br>Y eso lo hace soportable.</p>"
-  },
-  {
-    title: "Tu voz desde lejos",
-    poem: "<p>Hay algo en tu voz<br>que no cambia aunque haya kilómetros.<br>Llega igual de cálida,<br>como si estuvieras aquí.</p><p>No sé cómo lo haces.<br>Pero cada mensaje tuyo<br>es como si el mundo cupiera<br>en una sola pantalla pequeña.</p><p>Sigue escribiendo. Sigue siendo tú.<br>Que desde acá te escucho perfectamente.</p>"
-  },
-  {
-    title: "Lo que guardo de ti",
-    poem: "<p>Guardo la forma en que ríes<br>cuando algo te sorprende de verdad.<br>Guardo tu voz cuando cantas,<br>ese regalo íntimo que me das sin darte cuenta.</p><p>Guardo la humildad con que niegas<br>todo lo hermosa que eres.<br>Guardo todo lo que eres<br>como quien cuida algo<br>que sabe que no tiene reemplazo.</p>"
-  },
-  {
-    title: "Geografía del amor",
-    poem: "<p>El amor no tiene mapa<br>pero si lo tuviera,<br>tú serías el punto de llegada<br>de todos mis caminos.</p><p>Colombia, España, donde sea:<br>mis pasos siempre apuntan hacia ti.<br>La distancia es solo un detalle<br>que el amor no sabe leer.</p>"
-  },
-  {
-    title: "Lo que más extraño",
-    poem: "<p>No es una sola cosa.<br>Es la suma de todas las pequeñas:<br>el buenos días que me mandas,<br>la forma en que dices amor,<br>los silencios que también son tuyos.</p><p>Te extraño en plural, chiquita.<br>Te extraño en todo,<br>todo el tiempo,<br>sin pausa.</p>"
-  },
-  {
-    title: "Cuando llueve allá",
-    poem: "<p>Pienso en ti cuando llueve.<br>Me pregunto si llueve también allá,<br>si la lluvia te toca los hombros<br>y si en ese momento<br>piensas un segundo en mí.</p><p>Ojalá que sí.<br>Ojalá que la lluvia<br>te recuerde que alguien<br>del otro lado del océano<br>también te está pensando.</p>"
-  },
-  {
-    title: "El anillo y el collar",
-    poem: "<p>Quería darte algo que dijera<br>lo que las palabras solas no alcanzan.<br>En cien idiomas, siempre lo mismo:<br>te amo.</p><p>Que lo lleves cerca<br>es como llevarme a mí,<br>incluso cuando hay un océano<br>entre los dos.<br>Sin límite geográfico.<br>Sin límite de ningún tipo.</p>"
-  },
-  {
-    title: "Lo que soñé",
-    poem: "<p>No soñé con alguien perfecto.<br>Soñé con alguien real,<br>con alguien que me hiciera<br>sentir en casa sin necesitar<br>estar en ningún lugar especial.</p><p>Y eso eres tú.<br>Una casa que camina,<br>que ríe, que canta,<br>que llega a mis manos<br>justo cuando más lo necesito.</p>"
-  },
-  {
-    title: "Las tardes tranquilas",
-    poem: "<p>Lo que más quiero<br>son esas tardes tranquilas<br>donde no necesitamos nada más<br>que estar juntos.</p><p>Sin planes, sin prisa, sin ruido.<br>Solo tú y yo<br>siendo exactamente lo que somos,<br>sin esforzarnos,<br>sin pretender.</p><p>Eso es lo que quiero para siempre.</p>"
-  },
-  {
-    title: "Mitad del camino",
-    poem: "<p>Ya vamos por la mitad.<br>Los días que pasaron<br>ya son nuestros para siempre.<br>Los que faltan, también.</p><p>Cada uno es un paso<br>hacia el momento<br>en que pueda verte<br>y decirte en persona<br>todo lo que en esta pantalla<br>no cabe.</p>"
-  },
-  {
-    title: "La belleza que niegas",
-    poem: "<p>Niegas tu belleza<br>con esa humildad que tanto quiero en ti.<br>Pero yo la veo todos los días<br>y todos los días me vuelve a enamorar.</p><p>No voy a convencerte con palabras.<br>Pero voy a seguir mirándote<br>como idiota enamorado<br>hasta que un día<br>tú también lo veas.</p>"
-  },
-  {
-    title: "No eres una carga",
-    poem: "<p>Quiero que lo sepas,<br>que lo leas y te lo creas:<br>nunca fuiste una carga.<br>Ni un momento, ni un segundo.<br>Ni siquiera cuando los días pesaban.</p><p>El tiempo contigo<br>es el más valioso que he tenido.<br>Y lo volvería a elegir<br>todas las veces que me dejaras.</p>"
-  },
-  {
-    title: "Lo que me devolviste",
-    poem: "<p>Hubo momentos en que estaba muy perdido.<br>Momentos que casi no te conté.<br>Y tu voz, tus mensajes,<br>el simple hecho de saber que estabas ahí<br>me devolvieron las ganas de levantarme.</p><p>No lo sabes del todo.<br>Pero me salvaste, chiquita.<br>Y eso no lo olvido.<br>Ni lo voy a olvidar.</p>"
-  },
-  {
-    title: "Lo que volverás a encontrar",
-    poem: "<p>Cuando vuelvas<br>encontrarás todo igual:<br>mis ganas de verte,<br>mis ganas de escucharte,<br>ese amor que no sabe<br>quedarse quieto.</p><p>Todo aquí, esperándote.<br>Igual que yo.<br>Exactamente igual que yo.</p>"
-  },
-  {
-    title: "El último día antes de verte",
-    poem: "<p>Mañana ya no hay distancia.<br>Mañana el contador llega a cero<br>y yo llego a ti.</p><p>Este último poema<br>es solo para decirte<br>que cada día valió la pena<br>porque me trajo hasta aquí:<br>a un solo día de verte.</p><p>Vuelve pronto, chiquita.<br>Tu pelusita ya te espera<br>con todo. 🌸</p>"
-  },
-  {
-    title: "El día que vuelves",
-    poem: "<p>Hoy es el día.<br>Hoy el mundo vuelve a ser completo.</p><p>No tengo más poemas que darte<br>porque a partir de hoy<br>voy a decírtelo en persona,<br>en voz, en abrazo,<br>en cada pequeño gesto<br>de los que no caben en una pantalla.</p><p>Bienvenida de vuelta.<br>Te quería. Te quiero. Te voy a querer.<br>Siempre. 🌸</p>"
-  }
+
+var MAIN_POEM = [
+  "Mi chiquita,",
+
+  "Yo soy de los que se aburren rapido. De esos que si no los atrapas en las primeras palabras, ya se fueron. y Tu lo sabes. Y sin embargo aca estoy amandote y eligiendote cada dia, Hoy y Siempre.",
+
+  "Nos conocimos de la manera mas random posible, que al mismo tiempo es la forma mas honesta de conocerse: sin filtros, sin aparentar, solo tu siendo tu y algo en mi diciendo conocela, dale una oportunidad. No se que fue exactamente. No me importa saberlo, Solo se que le hice caso y que no me arrepiento de nada.",
+
+  "siempre a habido kilometros entre tu y yo. pero por alguna razon esta vez se siente diferente, duele por alguna razon, tu y yo Lo hemos vivido de todo. En pantalla, en voz, en mensajes,",
+
+  "No hemos tenido un camino facil. Hemos peleado, hemos tenido dias pesados, dias en que el cansancio me hizo reaccionar mal. Pero cada vez que el mundo se puso al reves, algo me decia que aguantara, que esto valia, que tu valias. Y tenia razon.",
+
+  "Te admiro, Sarita. Me enorgulleces. Quiero protegerte de todo lo que pueda y de algunas cosas que no puedo pero igual intento. Quiero estar contigo de la unica manera en que se querer: con todo, sin amar a medias, eligiendote todos los dias aunque a veces cueste.",
+
+  "Y aunque muchas veces digo las cosas de forma simple, hay algo que quiero que sepas. Nunca te vi como una carga. Nunca senti que estuviera perdiendo el tiempo contigo. Todo lo contrario. Cada minuto que paso contigo es de los que mas valoro. Incluso esos dias donde no hacemos nada especial, donde simplemente estamos ahi hablando de cualquier tonteria. Porque cuando estoy contigo, hasta lo mas normal se vuelve importante.",
+
+  "A veces me pregunto si realmente entiendes el lugar que ocupas en mi vida. Porque para mi no eres solo mi novia. Eres mi tranquilidad cuando todo esta mal. Eres la primera persona a la que quiero contarle las cosas buenas. Eres la persona que busco cuando algo me duele. Eres hogar, incluso estando a cientos o miles de kilometros de distancia.",
+
+  "Y si alguna vez dudas de ti, de nosotros o de lo que siento, quiero que vuelvas a leer esto. Porque nada de lo que escribo sale por compromiso. Cada palabra sale de un lugar muy real dentro de mi. Del mismo lugar que sonrie cuando ve tu nombre en la pantalla. Del mismo lugar que se enamoro de ti. Del mismo lugar que sigue creyendo que eres una de las mejores cosas que le han pasado en la vida.",
+
+  "No se que va a pasar dentro de cinco años, diez años o veinte años. No puedo prometer conocer el futuro. Pero si puedo decirte algo con total seguridad: si me preguntaran hoy con quien quiero compartir todo ese tiempo, la respuesta seguirias siendo tu. Porque te amo de una forma tranquila, sincera y profunda. De esa forma que no necesita ser perfecta para ser real.",
+
+  "Gracias por quedarte cuando hubiera sido mas facil irte. Gracias por escucharme cuando ni yo mismo me entendia. Gracias por cada llamada, cada mensaje, cada desvelo, cada risa y cada momento que hemos construido juntos. Gracias por convertirme en una mejor version de mi mismo sin siquiera intentarlo.",
+
+  "Y quiero que recuerdes algo durante este viaje. La distancia nunca ha sido capaz de cambiar lo que siento por ti. Puede hacer que te extrañe mas. Puede hacer que algunas noches sean mas largas. Pero no puede hacer que te ame menos. Eso nunca.",
+
+  "Si algun dia te preguntas que lugar ocupas en mi corazon, la respuesta es sencilla: uno que nadie mas podria ocupar. Porque no quiero a alguien mejor. No estoy esperando a nadie mas. No estoy buscando algo diferente. Lo que quiero ya existe. Lo que amo ya existe. Y eres tu.",
+
+  "España te tiene un mes. Yo te tengo para siempre. Vuelve pronto, chiquita. Tu pelusita esta aca contando cada segundo. 🌸"
 ];
 
-var START = new Date('2025-06-18T00:00:00');
-var END   = new Date('2025-07-16T00:00:00');
+var POEMS = [
+{
+title: "Todavia",
+poem: "<p>Todavia me pasa.<br>Todavia sonrio cuando aparece tu nombre.<br>Todavia me emociono cuando veo que me escribiste.<br>Todavia reviso el celular con una sonrisa tonta cuando se que eres tu.<br>Y la verdad es que me gusta que siga pasando.</p><p>Porque despues de todo este tiempo,<br>despues de todas las conversaciones,<br>de todas las llamadas,<br>de todos los dias compartidos,<br>sigues provocando en mi exactamente lo mismo.<br>Esa sensacion bonita de haber encontrado a alguien especial.</p><p>Hay personas que con el tiempo se vuelven rutina.<br>Tu te volviste hogar.<br>Y cada dia que pasa estoy mas seguro<br>de que te amo mucho mas de lo que las palabras alcanzan a explicar.</p>"
+},
+
+{
+title: "La suerte que tengo",
+poem: "<p>A veces me pregunto cuantas cosas tuvieron que pasar para que terminaramos juntos.<br>Cuantas decisiones.<br>Cuantas casualidades.<br>Cuantos momentos exactos.</p><p>Y cada vez que lo pienso llego a la misma conclusion.<br>Tu eres la mayor suerte que he tenido.<br>No porque seas perfecta.<br>Sino porque eres tu.<br>Porque me entiendes.<br>Porque me escuchas.<br>Porque me haces sentir querido de una manera que nunca habia sentido.</p><p>Y sinceramente,<br>si pudiera volver atras,<br>volveria a elegir conocerte una y otra vez.<br>Porque algunas personas mejoran tu vida.<br>Tu cambiaste la mia por completo.</p>"
+},
+
+{
+title: "Lo que no ves",
+poem: "<p>Creo que a veces no te das cuenta de lo importante que eres para mi.<br>Porque tu ves mensajes.<br>Ves llamadas.<br>Ves conversaciones normales.<br>Pero yo veo mucho mas que eso.<br>Veo a la persona que me acompaña todos los dias.<br>La persona que me devolvio sonrisas cuando mas las necesitaba.<br>La persona que hace que el mundo pese un poco menos.<br>Y por eso cuando te digo que te amo,no es una frase bonita.<br>Es la verdad mas grande que tengo.</p>"
+},
+
+{
+title: "Cuando me dices amor",
+poem: "<p>Es una palabra pequeña.Solo cuatro letras.<br>Pero cuando sale de tu boca se siente diferente.<br>No se si alguna vez voy a saber explicarlo bien.<br>Solo se que cada vez que me dices amor,algo dentro de mi se tranquiliza.<br>Como si por un instante todo estuviera exactamente donde debe estar.<br>Y tal vez para ti sea una palabra normal.<br>Pero para mi siempre va a ser una de mis formas favoritas de escucharte.</p>"
+},
+
+{
+title: "Mi lugar favorito",
+poem: "<p>Antes pensaba que los lugares eran importantes.<br>Tipo las ciudades.<br>Los paisajes.<br>Los lugares bonitos.<br>Pero contigo aprendi algo diferente.<br>Mi lugar favorito nunca ha sido un lugar.<br>Siempre has sido tu.<br>Una llamada contigo.<br>Una conversacion cualquiera.<br> Escucharte hablar de cualquier cosa, Porque al final del dia.<br> donde estas tu es el lugar donde mas quiero estar.</p>"
+},
+
+{
+title: "Lo mejor de mi dia",
+poem: "Hay dias buenos.<br>Hay dias cansados.<br>Hay dias en los que todo parece salir mal.<br>Pero todos tienen algo en comun.<br>Tu siempre terminas siendo mi parte favorita.<br>Un mensaje tuyo.<br>Una llamada.<br>Una foto.<br>Cualquier cosa.<br>Y me gusta saber que sin importar como empiece el dia,si estas tu,siempre termina siendo mejor.</p>"
+},
+
+{
+  title: "Lo que significas",
+  poem: "<p>Cuando te digo que te amo,<br>no hablo solo de lo bonita que eres.<br>Ni de tu sonrisa.<br>Ni de tus ojos.<br><br>Hablo de todo lo que representas para mi.<br>De la paz que encuentro contigo.<br>De la confianza que me das.<br>De la forma en que me haces sentir acompañado incluso cuando estas lejos.<br><br>Te amo por quien eres.<br>Pero tambien por todo lo que provocas en mi corazon.</p>"
+},
+
+{
+  title: "Elegirte",
+  poem: "<p>No siento que te haya elegido una sola vez.<br>Siento que te elijo todos los dias.<br><br>Te elijo cuando te extraño.<br>Te elijo cuando espero tus mensajes.<br>Te elijo cuando imagino mi futuro.<br>Te elijo incluso en los dias dificiles.<br><br>Porque nunca se trato de encontrar a alguien perfecto.<br>Se trato de encontrarte a ti.<br>Y una vez que lo hice,<br>supe que no queria irme a ninguna otra parte.</p>"
+},
+
+{
+  title: "Mi persona",
+  poem: "<p>Hay muchas personas importantes en mi vida.<br>Pero solo hay una con la que quiero compartir absolutamente todo.<br><br>Las cosas buenas.<br>Las malas.<br>Los sueños.<br>Los miedos.<br>Las tonterias que me pasan durante el dia.<br><br>Porque de alguna manera,<br>todo parece tener mas sentido cuando te lo cuento a ti.<br>Y creo que eso pasa porque eres mi persona favorita.</p>"
+},
+
+{
+  title: "Gracias",
+  poem: "<p>Gracias por quedarte.<br>Gracias por escucharme incluso cuando no se explicar lo que siento.<br>Gracias por tu paciencia.<br>Gracias por tu cariño.<br>Gracias por cada momento que compartes conmigo.<br><br>No creo que exista una forma suficiente de agradecerte todo lo que significas para mi.<br>Pero quiero que sepas algo.<br><br>Mi vida es mejor desde que llegaste.<br>Y una parte de mi siempre te va a estar agradecida por eso.</p>"
+}
+,
+{
+  title: "Lo que veo en ti",
+  poem: "<p>A veces siento que no te ves como yo te veo.<br>Y me da un poco de tristeza pensar eso.<br>Porque mientras tu te preocupas por tus errores,<br>yo me quedo admirando todo lo bueno que hay en ti.<br><br>Veo a una mujer fuerte incluso cuando se siente cansada.<br>Veo a alguien que sigue adelante aunque tenga miedo.<br>Veo a una persona con un corazon enorme.<br>Y veo a la chica de la que me enamoro todos los dias.<br><br>Ojala algun dia puedas mirarte con mis ojos.<br>Porque entonces entenderias por que te amo tanto.</p>"
+},
+
+{
+  title: "Mi pensamiento favorito",
+  poem: "<p>Hay pensamientos que aparecen y desaparecen durante el dia.<br>Y luego estas tu.<br>Que apareces constantemente sin pedir permiso.<br><br>Te encuentro en canciones.<br>En conversaciones.<br>En momentos random donde algo me hace sonreir.<br>Y automaticamente pienso en ti.<br><br>No importa cuanto intente explicarlo.<br>La verdad es sencilla.<br>Me gustas tanto que mi mente siempre termina regresando a ti.</p>"
+},
+
+{
+  title: "La calma",
+  poem: "<p>Antes pensaba que amar era sentir mariposas todo el tiempo.<br>Que era intensidad y emocion constante.<br><br>Pero contigo descubri algo diferente:<br>Tambien es calma<br>Tambien es sentir que todo esta bien cuando escucho tu voz.<br>Tambien es encontrar paz en una llamada.<br><br>Y sinceramente,<br>si alguien me preguntara donde me siento mas tranquilo,<br>la respuesta seguirias siendo tu.</p>"
+},
+
+{
+  title: "Mi futuro favorito",
+  poem: "<p>A veces imagino el futuro.<br>No porque quiera apresurar las cosas.<br>Sino porque me gusta pensar en todo lo que nos queda por vivir.<br><br>Y es curioso.<br>Porque cada vez que imagino algo bonito,<br>siempre estas ahi.<br>Siempre apareces sonriendo en algun rincon de mis planes.<br><br>Supongo que es porque ya no imagino mis mejores dias sin ti.<br>Y sinceramente,<br>no quiero hacerlo.</p>"
+},
+
+{
+  title: "Lo que provocas",
+  poem: "<p>No se si alguna vez te lo he dicho asi.<br>Pero tienes un efecto muy extraño en mi.<br><br>Me haces sonreir sin intentarlo.<br>Me haces sentir querido en los dias dificiles.<br>Me haces extrañarte incluso despues de hablar contigo.<br>Y logras que cualquier problema parezca mas pequeño.<br><br>Hay personas que cambian un momento.<br>Tu cambiaste mi vida.<br>Y sigo agradeciendo eso todos los dias.</p>"
+},
+
+{
+  title: "Tu y nadie mas",
+  poem: "<p>Si quisiera a alguien perfecto,<br>estaria persiguiendo algo que no existe.<br><br>Pero nunca busque perfeccion.<br>Te busque a ti.<br>Con tus dias buenos.<br>Con tus dias malos.<br>Con todo lo que eres.<br><br>Porque al final no se trata de encontrar a alguien sin defectos.<br>Se trata de encontrar a alguien a quien amar con todo el corazon.<br>Y yo te encontre a ti.</p>"
+},
+
+{
+  title: "Lo que mas amo",
+  poem: "<p>Podria hablar de tu sonrisa durante horas.<br>Podria hablar de lo bonita que me pareces.<br>Y creeme, tendria mucho que decir.<br><br>Pero si soy sincero,<br>lo que mas amo de ti no es algo que se vea.<br>Es tu forma de querer.<br>Tu forma de preocuparte por mi.<br>Tu forma de quedarte cuando seria mas facil irse.<br><br>Eso es lo que me enamoro.<br>Y lo que sigue enamorandome cada dia.</p>"
+},
+
+{
+  title: "Si supieras",
+  poem: "<p>Si supieras cuantas veces sonrio por tu culpa.<br>Cuantas veces releo mensajes tuyos.<br>Cuantas veces me descubro pensando en ti durante el dia.<br><br>Tal vez entenderias mejor lo mucho que te amo.<br>Porque esto nunca fue algo pequeño para mi.<br>Nunca fue pasajero.<br>Nunca fue una simple etapa.<br><br>Te convertiste en una parte importante de mi vida.<br>Y sinceramente,<br>no quiero imaginar una version de mi mundo donde no estes.</p>"
+},
+
+{
+  title: "Mi lugar seguro",
+  poem: "<p>Cuando tengo miedo,<br>cuando estoy cansado,<br>cuando siento que las cosas pesan demasiado,<br>siempre termino buscando el mismo lugar.<br><br>Tu voz.<br>Tus mensajes.<br>Tu compañia.<br><br>Porque contigo puedo bajar la guardia.<br>Puedo ser yo.<br>Puedo sentirme querido.<br>Y eso vale mas de lo que probablemente imaginas.</p>"
+},
+
+{
+  title: "Lo mejor que hice",
+  poem: "<p>He cometido errores.<br>Muchos mas de los que me gustaria admitir.<br>He tomado decisiones buenas y malas.<br><br>Pero hay una de la que nunca me voy a arrepentir.<br>Haberme quedado.<br>Haber luchado por nosotros.<br>Haber seguido aqui incluso cuando las cosas fueron dificiles.<br><br>Porque todo eso me permitio llegar hasta este momento.<br>Un momento donde puedo mirarte y decir con certeza:<br>eres una de las mejores cosas que me han pasado.</p>"
+}
+,
+{
+  title: "Me salvaste",
+  poem: "<p>No creo que entiendas completamente lo que hiciste por mi.<br>Porque para ti tal vez fueron mensajes.<br>Llamadas.<br>Palabras simples.<br><br>Pero para mi fueron mucho mas que eso.<br>Fuiste una mano cuando me estaba cayendo.<br>Fuiste una razon para quedarme cuando queria rendirme.<br>Y fuiste una luz en momentos donde yo mismo no podia verla.<br><br>Desde entonces no pasa un solo dia<br>en el que no agradezca haberte conocido.<br>Porque si hoy sigo aqui,<br>una parte de esa historia siempre te pertenece a ti.</p>"
+},
+
+{
+  title: "El mejor dia",
+  poem: "<p>He vivido muchos dias en mi vida.<br>Buenos, malos y normales.<br>Pero hay uno que siempre vuelve a mi cabeza.<br><br>El dia que te vi.<br>Los nervios que casi no me dejaban pensar.<br>Las ganas de que todo saliera bien.<br>Y esa sensacion de felicidad cuando por fin estuviste frente a mi.<br><br>Fue un dia simple para el mundo.<br>Pero para mi fue especial.<br>Porque fue el dia en que pude confirmar<br>que te amaba incluso mas de lo que imaginaba.</p>"
+},
+
+{
+  title: "Tu voz",
+  poem: "<p>Hay voces bonitas.<br>Y luego esta la tuya.<br><br>La que mejora mis dias sin proponerselo.<br>La que me acompaña cuando te extraño.<br>La que me hace sonreir cuando me dices amor.<br>Y la que puede tranquilizarme incluso cuando todo parece complicado.<br><br>No creo que alguna vez entiendas por completo<br>lo feliz que me hace escucharte.<br>Pero ojala nunca dejes de hacerlo.</p>"
+},
+
+{
+  title: "Mi promesa favorita",
+  poem: "<p>No puedo prometerte una vida perfecta.<br>No puedo prometerte que nunca habra problemas.<br>No puedo prometerte que todo sera facil.<br><br>Pero si puedo prometerte algo.<br>Que voy a seguir eligiendote.<br>Que voy a seguir luchando por nosotros.<br>Y que incluso en los dias mas dificiles,<br>seguire viendo en ti a la mujer que amo.<br><br>Porque esa sigue siendo mi promesa favorita.</p>"
+},
+
+{
+  title: "Lo que quiero",
+  poem: "<p>No quiero una historia perfecta.<br>No quiero una vida sacada de una pelicula.<br><br>Lo que quiero es mucho mas simple.<br>Quiero seguir escuchando tus historias.<br>Quiero seguir riendo contigo.<br>Quiero seguir llamandote amor.<br>Quiero seguir compartiendo mis dias contigo.<br><br>Y sobre todo,<br>quiero seguir amandote durante mucho tiempo.<br><br>porque para ti es dificil que alguien quiera estar contigo pero para mi es una eleccion que tomo y tomare cada dia de mi vida.</p>"
+},
+
+{
+  title: "Eres tu",
+  poem: "<p>Si alguien me preguntara por que te amo,<br>probablemente no sabria por donde empezar.<br><br>Porque son demasiadas razones.<br>Tu forma de hablar.<br>Tu forma de querer.<br>Tu forma de preocuparte por mi.<br>Tu risa cuando estas conmigo.<br><br>Pero al final siempre llego a la misma conclusion.<br>No te amo por una sola razon.<br>Te amo porque eres tu.</p>"
+},
+
+{
+  title: "El dia que espere",
+  poem: "<p>Ya casi termina la espera.<br>Ya casi se acaba este mes.<br><br>Y aunque volveria a esperarte mil veces si fuera necesario,<br>no voy a mentirte.<br>Tengo ganas de jugar contigo.<br>Tengo ganas de decirte buenos dias en las mañanas.<br>Tengo ganas de volver a escuchar esa voz que tanto amo.<br><br>Porque todo esto Solo me hizo darme cuenta de cuanto te quiero cerca.</p>"
+},
+
+{
+  title: "Siempre",
+  poem: "<p>Si algun dia dudas de cuanto te amo,<br>quiero que recuerdes algo.<br><br>Recuerda cada mensaje.<br>Recuerda cada llamada.<br>Recuerda cada palabra que te he escrito.<br>Porque todas dicen exactamente lo mismo.<br><br>Que te amo.<br>Que te elijo.<br>Y que mientras me lo permitas,<br>voy a seguir haciendolo todos los dias de mi vida.</p>"
+}
+,
+{
+  title: "Si pudiera verte",
+  poem: "<p>Si pudiera verte ahora mismo,<br>no creo que haria algo extraordinario.<br>No pisaria la luna.<br>No cambiaria el mundo.<br>Probablemente solo me quedaria mirandote.<br>Como aquella primera vez.<br>Como sigo haciendolo cada vez que me mandas una foto.<br>Porque despues de todo este tiempo,<br>sigues teniendo ese efecto en mi.</p><p>A veces pienso que nunca voy a encontrar las palabras exactas para explicarte lo que siento.<br>Porque decir te amo se queda corto.<br>Muy corto.<br>Te amo cuando estoy bien.<br>Te amo cuando estoy cansado.<br>Te amo cuando el dia parece eterno.<br>Y te amo incluso en esos momentos donde no se como explicarme.</p><p>Lo unico que si se,<br>es que si volviera a empezar mi vida mil veces,<br>volveria a elegir conocerte en cada una de ellas.<br>Porque entre todas las cosas buenas que me han pasado,<br>ninguna se compara contigo.</p>"
+}
+]
+var START_MS = new Date(2026, 5, 18, 0, 0, 0, 0).getTime();
+var END_MS   = new Date(2026, 6, 16, 0, 0, 0, 0).getTime();
+var TOTAL_MS = END_MS - START_MS;
 
 function checkPw() {
   var val = document.getElementById('pw-field').value.toLowerCase().trim();
-  var err = document.getElementById('pw-error');
-  if (val === 'syd11145') {
+  if (val === 'sd10145') {
     document.getElementById('lock-screen').style.display = 'none';
     document.getElementById('main').style.display = 'block';
-    startCounter();
+    buildMainPoem();
     buildCalendar();
+    startCounters();
   } else {
-    var input = document.getElementById('pw-field');
-    input.classList.add('error');
-    err.textContent = 'Esa no es nuestra contraseña 🌸';
-    setTimeout(function() { input.classList.remove('error'); }, 500);
+    var inp = document.getElementById('pw-field');
+    inp.classList.add('error');
+    document.getElementById('pw-error').textContent = 'Esa no es nuestra contraseña 🌸';
+    setTimeout(function(){ inp.classList.remove('error'); }, 500);
   }
 }
+document.getElementById('pw-field').addEventListener('keydown', function(e){ if(e.key==='Enter') checkPw(); });
 
-document.getElementById('pw-field').addEventListener('keydown', function(e) {
-  if (e.key === 'Enter') checkPw();
-});
+function buildMainPoem() {
+  var container = document.getElementById('main-poem-text');
+  var html = '';
+  for (var i = 0; i < MAIN_POEM.length; i++) {
+    html += '<p>' + MAIN_POEM[i] + '</p>';
+  }
+  container.innerHTML = html;
+}
 
-function startCounter() {
+function fmtNum(n){ return String(n).padStart(2,'0'); }
+
+function startCounters() {
   function tick() {
-    var now = new Date();
-    var totalMs  = END - START;
-    var passedMs = Math.max(0, now - START);
-    var leftMs   = Math.max(0, END - now);
+    var now = Date.now();
 
-    var totalDays  = Math.round(totalMs / 86400000);
-    var passedDays = Math.floor(passedMs / 86400000);
-    var leftDays   = Math.ceil(leftMs / 86400000);
-    var hours      = Math.floor((leftMs % 86400000) / 3600000);
-    var mins       = Math.floor((leftMs % 3600000) / 60000);
-    var secs       = Math.floor((leftMs % 60000) / 1000);
+    var leftMs = Math.max(0, END_MS - now);
+    var cdDays  = Math.floor(leftMs / 86400000);
+    var cdHours = Math.floor((leftMs % 86400000) / 3600000);
+    var cdMins  = Math.floor((leftMs % 3600000)  / 60000);
+    var cdSecs  = Math.floor((leftMs % 60000)    / 1000);
 
-    document.getElementById('c-passed').textContent = passedDays;
-    document.getElementById('c-left').textContent   = leftDays;
-    document.getElementById('c-hours').textContent  = String(hours).padStart(2,'0');
-    document.getElementById('c-mins').textContent   = String(mins).padStart(2,'0');
-    document.getElementById('c-secs').textContent   = String(secs).padStart(2,'0');
+    document.getElementById('cd-days').textContent  = cdDays;
+    document.getElementById('cd-hours').textContent = fmtNum(cdHours);
+    document.getElementById('cd-mins').textContent  = fmtNum(cdMins);
+    document.getElementById('cd-secs').textContent  = fmtNum(cdSecs);
+    document.getElementById('cd-msg').textContent   = leftMs <= 0
+      ? 'y listo, volvio mi mujer hermosa yey.'
+      : 'cada segundo que pasa es un segundo mas cerca de verte';
 
-    var msg = leftMs <= 0
-      ? '¡Ya volvió Sarita! 🌸 El amor ganó la distancia.'
-      : 'Ya pasaron ' + passedDays + ' de ' + totalDays + ' días · queda un poco menos que ayer';
-    document.getElementById('c-msg').textContent = msg;
+    var passedMs = 0;
+    if (now >= START_MS) {
+      passedMs = Math.min(now - START_MS, TOTAL_MS);
+    }
+    var tpDays  = Math.floor(passedMs / 86400000);
+    var tpHours = Math.floor((passedMs % 86400000) / 3600000);
+    var tpMins  = Math.floor((passedMs % 3600000)  / 60000);
+    var tpSecs  = Math.floor((passedMs % 60000)    / 1000);
+
+    document.getElementById('tp-days').textContent  = tpDays;
+    document.getElementById('tp-hours').textContent = fmtNum(tpHours);
+    document.getElementById('tp-mins').textContent  = fmtNum(tpMins);
+    document.getElementById('tp-secs').textContent  = fmtNum(tpSecs);
+    document.getElementById('tp-msg').textContent   = passedMs <= 0
+      ? 'el conteo empieza el 18 de junio 💕'
+      : 'y contando... porque no hay un solo segundo en que no estes en mi mente';
   }
   tick();
   setInterval(tick, 1000);
 }
 
+function dateKey(d) {
+  return d.getFullYear() * 10000 + (d.getMonth()+1) * 100 + d.getDate();
+}
+
 function buildCalendar() {
   var grid = document.getElementById('cal-grid');
-  var now  = new Date();
-  now.setHours(0,0,0,0);
+  var todayKey = dateKey(new Date());
 
   var days = [];
-  var cur  = new Date(START);
-  while (cur <= END) {
+  var cur  = new Date(2026, 5, 18);
+  var last = new Date(2026, 6, 16);
+  while (cur <= last) {
     days.push(new Date(cur));
     cur.setDate(cur.getDate() + 1);
   }
-
   days.forEach(function(day, idx) {
-    var d = new Date(day);
-    d.setHours(0,0,0,0);
-
+    var k = dateKey(day);
     var div = document.createElement('div');
     div.className = 'cal-day';
 
-    var isToday  = d.getTime() === now.getTime();
-    var isPast   = d < now;
-    var isFuture = d > now;
-    var endDay   = new Date('2025-07-16T00:00:00'); endDay.setHours(0,0,0,0);
-    var isLast   = d.getTime() === endDay.getTime();
+    var isToday  = (k === todayKey);
+    var isPast   = (k < todayKey);
+    var isFuture = (k > todayKey);
+    var isReturn = (k === dateKey(new Date(2026, 6, 16)));
 
-    var icon = '';
-    if (isLast)       { div.classList.add('last-day','available'); icon = '✈️'; }
-    else if (isToday) { div.classList.add('today','available');    icon = '🌸'; }
-    else if (isPast)  { div.classList.add('past','available');     icon = '🌸'; }
-    else              { div.classList.add('future');                icon = '🔒'; }
+    var unlocked = isToday || isPast;
 
+    if (isReturn)      div.classList.add('is-return');
+    else if (isToday)  div.classList.add('is-today');
+    else if (isPast)   div.classList.add('is-past');
+    else               div.classList.add('is-future');
+
+    if (unlocked) div.classList.add('unlocked');
+
+    var icon = isFuture ? '🔒' : (isReturn ? '✈️' : '💕');
     var dayNum = day.getDate();
     var month  = day.toLocaleDateString('es', { month: 'short' });
 
@@ -701,9 +595,9 @@ function buildCalendar() {
       '<div class="cal-month">' + month + '</div>' +
       '<span class="cal-icon">' + icon + '</span>';
 
-    if (!isFuture) {
-      (function(pi, dd) {
-        div.addEventListener('click', function() { openPoem(dd, pi); });
+    if (unlocked) {
+      (function(poemIdx, dd) {
+        div.addEventListener('click', function() { openPoem(dd, poemIdx); });
       })(Math.min(idx, POEMS.length - 1), day);
     }
 
@@ -714,18 +608,16 @@ function buildCalendar() {
 function openPoem(day, idx) {
   var p = POEMS[idx];
   var dateStr = day.toLocaleDateString('es', { weekday:'long', day:'numeric', month:'long' });
-  document.getElementById('modal-date').textContent = '✦ ' + dateStr + ' ✦';
+  document.getElementById('modal-date').textContent  = '\u2736 ' + dateStr + ' \u2736';
   document.getElementById('modal-title').textContent = p.title;
-  document.getElementById('modal-poem').innerHTML = p.poem;
+  document.getElementById('modal-poem').innerHTML    = p.poem;
   document.getElementById('modal').classList.add('open');
   document.body.style.overflow = 'hidden';
 }
-
 function closeModal() {
   document.getElementById('modal').classList.remove('open');
   document.body.style.overflow = '';
 }
-
 document.getElementById('modal').addEventListener('click', function(e) {
   if (e.target === document.getElementById('modal')) closeModal();
 });
@@ -735,27 +627,24 @@ function makeStars() {
   for (var i = 0; i < 100; i++) {
     var s = document.createElement('div');
     s.className = 'star';
-    var size = Math.random() * 2 + 0.5;
-    s.style.cssText = 'width:' + size + 'px;height:' + size + 'px;top:' + (Math.random()*100) + '%;left:' + (Math.random()*100) + '%;--d:' + (Math.random()*3+2).toFixed(1) + 's;animation-delay:' + (Math.random()*4).toFixed(1) + 's';
+    var sz = Math.random()*2+0.5;
+    s.style.cssText = 'width:'+sz+'px;height:'+sz+'px;top:'+(Math.random()*100)+'%;left:'+(Math.random()*100)+'%;--d:'+(Math.random()*3+2).toFixed(1)+'s;animation-delay:'+(Math.random()*4).toFixed(1)+'s';
     c.appendChild(s);
   }
 }
-
 function makePetals() {
   var c = document.getElementById('petals');
-  var emojis = ['🌸','✿','❀','🌷'];
+  var em = ['💕','✿','💕','🌷'];
   for (var i = 0; i < 20; i++) {
     var p = document.createElement('div');
     p.className = 'petal';
-    p.textContent = emojis[i % emojis.length];
-    p.style.cssText = 'left:' + (Math.random()*100) + '%;animation-duration:' + (Math.random()*12+10).toFixed(1) + 's;animation-delay:' + (Math.random()*15).toFixed(1) + 's;font-size:' + (Math.random()*0.8+0.6).toFixed(1) + 'rem';
+    p.textContent = em[i%em.length];
+    p.style.cssText = 'left:'+(Math.random()*100)+'%;animation-duration:'+(Math.random()*12+10).toFixed(1)+'s;animation-delay:'+(Math.random()*15).toFixed(1)+'s;font-size:'+(Math.random()*0.8+0.6).toFixed(1)+'rem';
     c.appendChild(p);
   }
 }
-
 makeStars();
 makePetals();
 </script>
 </body>
 </html>
-
